@@ -1,7 +1,6 @@
-{ config, pkgs, ... }: {
-  # TODO: Pass through username from flake
-  home.username = "warren";
-  home.homeDirectory = "/home/warren";
+{ config, pkgs, user, ... }: {
+  home.username = "${user}";
+  home.homeDirectory = "/home/${user}";
 
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
