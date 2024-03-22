@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+# Source the current hostname if there exists a file called 'hosts' in the current dir
+if [ -f ./host ]; then
+    source ./host
+fi
+
+# Ensure we CURRENTHOST is set
+if [ ! -n "$CURRENTHOST" ]; then
+    echo "Environment variable CURRENTHOST is not set or empty. You can export it in a file called 'host' in this directory"
+    exit 0
+fi
+
+# Ensure there is a hardware configuration for CURRENTHOST
+if [ ! -f ./hosts/$CURRENTHOST.nix ]; then
+    echo "Could not find a hardware configuration file for host: '$CURRENTHOST'... Aborting"
+    exit 0
+fi
+
+# Rebuild for this host
+echo "Rebuilding for host: $CURRENTHOST"
+sudo nixos-rebuild switch --flake .#$CURRENTHOST
