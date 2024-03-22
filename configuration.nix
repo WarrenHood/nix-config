@@ -121,6 +121,7 @@
     neofetch
     grim slurp swappy wl-clipboard # Screenshots in wayland
     spotify
+    hyprpaper # Set wallpapers on Hyprland
   ];
 
   # Setup fonts
