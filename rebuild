@@ -5,7 +5,7 @@ if [ -f ./host ]; then
     source ./host
 fi
 
-# Ensure we CURRENTHOST is set
+# Ensure the CURRENTHOST is set
 if [ ! -n "$CURRENTHOST" ]; then
     echo "Environment variable CURRENTHOST is not set or empty. You can export it in a file called 'host' in this directory"
     exit 0
