@@ -2,6 +2,13 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 { config, pkgs, ... }: {
+
+  # Module imports
+  imports = [
+    ./apps # Install some apps
+  ];
+
+
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -94,35 +101,6 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    clang # For tree-sitter in Neovim
-    neovim
-    wget
-    firefox
-    alacritty
-    wofi
-    git
-    stow
-    gnumake
-    waybar
-    kitty
-    font-awesome
-    openrazer-daemon # Most people use Razer keyboards and mice... Right?
-    polychromatic
-    pavucontrol
-    wdisplays
-    wireplumber
-    rustup # TODO: Figure out how to automatically run rustup default stable
-    discord
-    neofetch
-    grim slurp swappy wl-clipboard # Screenshots in wayland
-    spotify
-    hyprpaper # Set wallpapers on Hyprland
-  ];
 
   # Setup fonts
   fonts.packages = with pkgs; [
