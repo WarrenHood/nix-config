@@ -5,7 +5,7 @@
 
   # Module imports
   imports = [
-    ./apps # Install some apps
+    ./apps # Install system-wide apps
   ];
 
 

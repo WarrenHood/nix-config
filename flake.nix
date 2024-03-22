@@ -16,7 +16,7 @@
       modules = [
         ({pkgs, ...}: {
           imports = [
-            ./configuration.nix
+            ./system
             ./hosts/dell3550.nix
           ];
         })
