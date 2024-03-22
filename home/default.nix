@@ -20,6 +20,14 @@
     fzf # A command-line fuzzy finder
   ];
 
+  # Set GTK theme to Breeze-Dark
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Breeze-Dark";
+      package = pkgs.libsForQt5.breeze-gtk;
+    };
+  };
 
   home.stateVersion = "23.11";
   programs.home-manager.enable = true;
