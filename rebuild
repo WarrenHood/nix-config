@@ -11,10 +11,17 @@ if [ ! -n "$CURRENTHOST" ]; then
     exit 0
 fi
 
+# Ensure flake.nix handles this host
+grep -q "nixosConfigurations\.${CURRENTHOST}" flake.nix
+if [[ ! $? -eq 0 ]]; then
+    echo "Hostname: $CURRENTHOST not configured in flake.nix. Aborting..."
+    exit 0
+fi
+
 # Ensure there is a hardware configuration for CURRENTHOST
 if [ ! -f ./hosts/$CURRENTHOST.nix ]; then
-    echo "Could not find a hardware configuration file for host: '$CURRENTHOST'... Aborting"
-    exit 0
+    echo "Could not find a hardware configuration file for host: '$CURRENTHOST'... Generating one"
+    nixos-generate-config --show-hardware-config > ./hosts/$CURRENTHOST.nix
 fi
 
 # Rebuild for this host
