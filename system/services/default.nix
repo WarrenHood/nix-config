@@ -1,19 +1,10 @@
 {...}: {
-  services.xserver = {
-    # Might need X for some apps
-    enable = true;
-    # Configure keymap in X11
-    layout = "us";
-    xkbVariant = "";
-    # Default to hyprland
-    displayManager.defaultSession = "hyprland";
-  };
+  services.xserver.layout = "us";
 
-  # Enable SDDM coz we need a display manager
-  services.xserver.displayManager.sddm = {
-    enable = true;
-    wayland.enable = true;
-  };
+  # xserver and sddm
+  services.xserver.enable = true;
+  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.displayManager.sddm.wayland.enable = true;
 
   # Enable pipewire service and rtkit
   security.rtkit.enable = true;
@@ -24,4 +15,7 @@
     pulse.enable = true;
     jack.enable = true;
   };
+
+  # gnome-keyring
+  services.gnome.gnome-keyring.enable = true;
 }
