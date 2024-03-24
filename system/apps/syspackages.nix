@@ -26,5 +26,6 @@
     hyprpaper # Set wallpapers on Hyprland
     fd
     ripgrep
+    nil nixpkgs-fmt
   ];
 }

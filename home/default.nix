@@ -2,6 +2,11 @@
   home.username = "${user}";
   home.homeDirectory = "/home/${user}";
 
+  imports = [
+    ./vscode.nix
+    ./direnv.nix
+  ];
+
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
     neofetch

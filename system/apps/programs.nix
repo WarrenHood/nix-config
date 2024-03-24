@@ -9,7 +9,7 @@
     syntaxHighlighting.enable = true;
     ohMyZsh = {
       enable = true;
-      plugins = ["git" "rust"];
+      plugins = ["git" "rust" "direnv"];
     };
   };
 
