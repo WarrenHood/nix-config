@@ -46,7 +46,7 @@
             ./system
             ./hosts/g14.nix
             ./system/optional/nvidia-g14.nix
-            (import ./system/optional/gamemode.nix user)
+            (import ./system/optional/gaming.nix user)
           ];
         })
 
