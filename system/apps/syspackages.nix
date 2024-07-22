@@ -29,5 +29,6 @@
     nil nixpkgs-fmt
     lshw
     keepassxc
+    xfce.thunar
   ];
 }
