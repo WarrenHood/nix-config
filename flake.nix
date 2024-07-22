@@ -43,7 +43,8 @@
           imports = [
             ./system
             ./hosts/g14.nix
-            ./system/nvidia-g14
+            ./system/optional/nvidia-g14.nix
+            (import ./system/optional/gamemode.nix user)
           ];
         })
 
