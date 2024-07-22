@@ -35,5 +35,24 @@
           }
       ];
     };
+    nixosConfigurations.g14 = nixpkgs.lib.nixosSystem {
+      inherit system;
+      modules = [
+        ({pkgs, ...}: {
+          imports = [
+            ./system
+            ./hosts/g14.nix
+          ];
+        })
+
+        home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.${user} = import ./home;
+            home-manager.extraSpecialArgs = { inherit user; };
+          }
+      ];
+    };
   };
 }
