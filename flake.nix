@@ -43,6 +43,7 @@
           imports = [
             ./system
             ./hosts/g14.nix
+            ./system/nvidia-g14
           ];
         })
 
