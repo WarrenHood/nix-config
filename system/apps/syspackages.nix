@@ -27,5 +27,6 @@
     fd
     ripgrep
     nil nixpkgs-fmt
+    lshw
   ];
 }
