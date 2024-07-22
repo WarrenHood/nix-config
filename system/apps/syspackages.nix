@@ -28,5 +28,6 @@
     ripgrep
     nil nixpkgs-fmt
     lshw
+    keepassxc
   ];
 }
