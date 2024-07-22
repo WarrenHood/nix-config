@@ -19,7 +19,7 @@
     wdisplays
     wireplumber
     rustup # TODO: Figure out how to automatically run rustup default stable
-    discord
+    webcord # Webcord should work more nicely in wayland
     neofetch
     grim slurp swappy wl-clipboard # Screenshots in wayland
     spotify

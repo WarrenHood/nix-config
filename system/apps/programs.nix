@@ -1,6 +1,7 @@
 {...}: {
   # Enable Hyprland
   programs.hyprland.enable = true;
+  programs.hyprland.xwayland.enable = true;
 
   # I like zsh
   programs.zsh = {
