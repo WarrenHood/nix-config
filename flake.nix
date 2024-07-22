@@ -11,9 +11,13 @@
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # auto-cpufreq = {
+    #   url = "github:AdnanHodzic/auto-cpufreq";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager,... }@inputs: 
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs: 
   let
     system = "x86_64-linux";
     user = "warren";
@@ -29,13 +33,14 @@
           ];
         })
 
-        home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.${user} = import ./home;
-            home-manager.extraSpecialArgs = { inherit user; };
-          }
+        home-manager.nixosModules.home-manager {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.${user} = import ./home;
+          home-manager.extraSpecialArgs = { inherit user; };
+        }
+
+      # auto-cpufreq.nixosModules.default
       ];
     };
     nixosConfigurations.g14 = nixpkgs.lib.nixosSystem {
@@ -50,13 +55,14 @@
           ];
         })
 
-        home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.${user} = import ./home;
-            home-manager.extraSpecialArgs = { inherit user; };
-          }
+        home-manager.nixosModules.home-manager {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.${user} = import ./home;
+          home-manager.extraSpecialArgs = { inherit user; };
+        }
+        
+        # auto-cpufreq.nixosModules.default
       ];
     };
   };

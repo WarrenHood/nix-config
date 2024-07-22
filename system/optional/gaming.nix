@@ -5,6 +5,4 @@ user: { ... }: {
     (import ./gamemode.nix user)
     ./steam.nix
   ];
-
-  powerManagement.cpuFreqGovernor = "performance";
 }
