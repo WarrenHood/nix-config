@@ -36,8 +36,8 @@
         package = pkgs.libsForQt5.breeze-icons;
       };
       cursorTheme = {
-        name = "DMZ-Black";
-        package = pkgs.vanilla-dmz;
+        name = "breeze_cursors";
+        package = pkgs.libsForQt5.breeze-icons;
       };
       gtk3 = {
         extraConfig.gtk-application-prefer-dark-theme = true;
@@ -46,8 +46,8 @@
 
   home.pointerCursor = {
     gtk.enable = true;
-    name = "DMZ-Black";
-    package = pkgs.vanilla-dmz;
+    name = "breeze_cursors";
+    package = pkgs.libsForQt5.breeze-icons;
     size = 16;
   };
 
