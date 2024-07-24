@@ -30,5 +30,15 @@
     lshw
     keepassxc
     xfce.thunar
+    # Breeze Theme
+    pkgs.libsForQt5.breeze-gtk
+    pkgs.libsForQt5.breeze-icons
+    # SDDM Theme
+    (pkgs.where-is-my-sddm-theme.override {
+      themeConfig.General = {
+        background = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+        backgroundMode = "none";
+      };
+    })
   ];
 }

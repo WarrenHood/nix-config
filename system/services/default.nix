@@ -3,8 +3,19 @@
 
   # xserver and sddm
   services.xserver.enable = true;
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.displayManager.sddm.wayland.enable = true;
+  services.xserver.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+    enableHidpi = true;
+    autoNumlock = true;
+    theme = "where_is_my_sddm_theme";
+     settings = {
+      Theme = {
+        CursorTheme = "breeze_cursors";
+      };
+    };
+  };
+  
 
   # Enable pipewire service and rtkit
   security.rtkit.enable = true;
