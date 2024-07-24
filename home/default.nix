@@ -25,33 +25,39 @@
     fzf # A command-line fuzzy finder
   ];
 
-  # Set GTK theme to Breeze-Dark
-  gtk = {
-    enable = true;
-    theme = {
-      name = "Breeze-Dark";
-      package = pkgs.libsForQt5.breeze-gtk;
-    };
+    gtk = {
+      enable = true;
+      theme = {
+        name = "Breeze-Dark";
+        package = pkgs.libsForQt5.breeze-gtk;
+      };
+      iconTheme = {
+        name = "breeze-dark";
+        package = pkgs.libsForQt5.breeze-icons;
+      };
+      cursorTheme = {
+        name = "breeze";
+        package = pkgs.libsForQt5.breeze-icons;
+      };
+      gtk3 = {
+        extraConfig.gtk-application-prefer-dark-theme = true;
+      };
+  };
 
-    # TODO: Get Breeze-Dark cursor working
-    # cursorTheme = {
-    #   name = "Breeze-Cursor";
-    #   package = pkgs.libsForQt5.breeze-icons;
-    # };
+  home.pointerCursor = {
+    gtk.enable = true;
+    name = "breeze";
+    package = pkgs.libsForQt5.breeze-icons;
+    size = 16;
+  };
 
-    # Prefer dark theme in GTK 3 and 4
-    gtk3.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
-    };
-
-    gtk4.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      gtk-theme = "Breeze-Dark";
+      color-scheme = "prefer-dark";
     };
   };
+
 
   home.stateVersion = "23.11";
   programs.home-manager.enable = true;
