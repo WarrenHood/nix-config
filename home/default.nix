@@ -5,6 +5,7 @@
   imports = [
     ./vscode.nix
     ./direnv.nix
+    ./discord
   ];
 
   # Packages that should be installed to the user profile.
