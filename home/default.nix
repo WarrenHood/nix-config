@@ -24,6 +24,12 @@
     jq # A lightweight and flexible command-line JSON processor
     eza # A modern replacement for ‘ls’
     fzf # A command-line fuzzy finder
+
+    modrinth-app # Modrinth app for minecraft
+
+    # Thermals and performance
+    s-tui # stres test tui
+    stress # stress testing
   ];
 
     gtk = {

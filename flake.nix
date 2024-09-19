@@ -51,6 +51,7 @@
             ./system
             ./hosts/g14.nix
             ./system/optional/nvidia-g14.nix
+            ./system/optional/asus.nix
             (import ./system/optional/gaming.nix user)
           ];
         })
