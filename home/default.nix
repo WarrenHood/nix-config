@@ -1,4 +1,4 @@
-{ config, pkgs, user, ... }: {
+{ config, pkgs, user, mcmpmgr, system, ... }: {
   home.username = "${user}";
   home.homeDirectory = "/home/${user}";
 
@@ -26,10 +26,14 @@
     fzf # A command-line fuzzy finder
 
     modrinth-app # Modrinth app for minecraft
+    zulu17 # java 17
 
     # Thermals and performance
     s-tui # stres test tui
     stress # stress testing
+
+    # My minecraft package manager
+    mcmpmgr.packages.${system}.mcmpmgr
   ];
 
     gtk = {

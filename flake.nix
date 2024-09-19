@@ -15,9 +15,14 @@
     #   url = "github:AdnanHodzic/auto-cpufreq";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
+
+    # My minecraft modpack manager
+    mcmpmgr = {
+      url = "github:WarrenHood/MCModpackManager";
+    };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs: 
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, mcmpmgr, ... }@inputs: 
   let
     system = "x86_64-linux";
     user = "warren";
@@ -60,7 +65,7 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.${user} = import ./home;
-          home-manager.extraSpecialArgs = { inherit user; };
+          home-manager.extraSpecialArgs = { inherit user; inherit mcmpmgr; inherit system; };
         }
         
         # auto-cpufreq.nixosModules.default
