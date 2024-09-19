@@ -1,7 +1,17 @@
-{...}: {
+{pkgs, ...}: {
   # Enable Hyprland
   programs.hyprland.enable = true;
   programs.hyprland.xwayland.enable = true;
+
+  # Enable portals
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-hyprland
+      pkgs.xdg-desktop-portal-gnome
+      pkgs.xdg-desktop-portal-gtk
+    ];
+  };
 
   # I like zsh
   programs.zsh = {
