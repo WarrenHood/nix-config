@@ -33,6 +33,8 @@
 
     # My minecraft package manager
     mcmpmgr.packages.${system}.mcmpmgr
+
+    stremio
   ];
 
     gtk = {
