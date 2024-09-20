@@ -20,9 +20,13 @@
     mcmpmgr = {
       url = "github:WarrenHood/MCModpackManager";
     };
+
+    # Anime games
+    aagl.url = "github:ezKEa/aagl-gtk-on-nix";
+    aagl.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, mcmpmgr, ... }@inputs: 
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, mcmpmgr, aagl, ... }@inputs: 
   let
     system = "x86_64-linux";
     user = "warren";
@@ -57,7 +61,9 @@
             ./hosts/g14.nix
             ./system/optional/nvidia-g14.nix
             ./system/optional/asus.nix
+            (import ./system/optional/animegames.nix aagl)
             (import ./system/optional/gaming.nix user)
+            aagl.nixosModules.default
           ];
         })
 
