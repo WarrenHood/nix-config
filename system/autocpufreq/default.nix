@@ -3,8 +3,9 @@
 
     programs.auto-cpufreq.settings = {
     charger = {
-      governor = "balance";
+      governor = "performance";
       turbo = "never";
+      scaling_max_freq = 3600000;
     };
 
     battery = {

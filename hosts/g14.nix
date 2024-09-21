@@ -17,8 +17,8 @@
   boot.extraModulePackages = with config.boot.kernelPackages; [ ];
   boot.kernelParams = [
     # Disable amd pstate to stop stupid boosting my cpu temp through the roof
-    "initcall_blacklist=amd_pstate_init"
-    "amd_pstate.enable=0"
+    # "initcall_blacklist=amd_pstate_init"
+    # "amd_pstate.enable=0"
   ];
 
   fileSystems."/" =
