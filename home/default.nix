@@ -23,6 +23,7 @@
     jq # A lightweight and flexible command-line JSON processor
     eza # A modern replacement for ‘ls’
     fzf # A command-line fuzzy finder
+    mission-center # A nice task-manager like thing
 
     modrinth-app # Modrinth app for minecraft
     zulu17 # java 17
