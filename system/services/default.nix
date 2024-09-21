@@ -27,6 +27,9 @@
     jack.enable = true;
   };
 
+  # Bluetooth
+  services.blueman.enable = true;
+
   # gnome-keyring
   services.gnome.gnome-keyring.enable = true;
 }
