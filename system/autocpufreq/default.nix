@@ -1,8 +1,15 @@
 { pkgs, ... }: {
+   programs.auto-cpufreq.enable = true;
 
-  environment.systemPackages = with pkgs; [
-      auto-cpufreq
-  ];
+    programs.auto-cpufreq.settings = {
+    charger = {
+      governor = "performance";
+      turbo = "never";
+    };
 
-  services.auto-cpufreq.enable = true;
+    battery = {
+      governor = "powersave";
+      turbo = "never";
+    };
+  };
 }

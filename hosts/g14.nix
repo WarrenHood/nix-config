@@ -12,6 +12,11 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
+  boot.kernelParams = [
+    # Disable amd pstate to stop stupid boosting my cpu temp through the roof
+    "initcall_blacklist=amd_pstate_init"
+    "amd_pstate.enable=0"
+  ];
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/dfe5cdc6-62b7-4ef0-aa0c-e38f4b4c6b24";

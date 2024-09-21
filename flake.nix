@@ -12,10 +12,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # auto-cpufreq = {
-    #   url = "github:AdnanHodzic/auto-cpufreq";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    auto-cpufreq = {
+      url = "github:AdnanHodzic/auto-cpufreq";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # My minecraft modpack manager
     mcmpmgr = {
@@ -27,7 +27,7 @@
     aagl.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, mcmpmgr, aagl, ... }@inputs: 
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, mcmpmgr, aagl, auto-cpufreq, ... }@inputs:
   let
     system = "x86_64-linux";
     user = "warren";
@@ -50,7 +50,7 @@
           home-manager.extraSpecialArgs = { inherit user; };
         }
 
-      # auto-cpufreq.nixosModules.default
+        # auto-cpufreq.nixosModules.default
       ];
     };
     nixosConfigurations.g14 = nixpkgs.lib.nixosSystem {
@@ -75,7 +75,7 @@
           home-manager.extraSpecialArgs = { inherit user; inherit mcmpmgr; inherit system; };
         }
         
-        # auto-cpufreq.nixosModules.default
+        auto-cpufreq.nixosModules.default
       ];
     };
   };
