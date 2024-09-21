@@ -17,6 +17,11 @@
     { device = "/dev/disk/by-uuid/dfe5cdc6-62b7-4ef0-aa0c-e38f4b4c6b24";
       fsType = "ext4";
     };
+  
+  fileSystems."/games" =
+    { device = "/dev/disk/by-uuid/5536ab49-58e5-4de0-b017-be95b1c440f3";
+      fsType = "ext4";
+    };
 
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/40F1-396F";
