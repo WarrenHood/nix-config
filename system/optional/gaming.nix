@@ -6,4 +6,9 @@ user: { ... }: {
     ./steam.nix
     ./r2modman.nix
   ];
+
+  # Controller support
+  services.joycond.enable = true;
+  programs.joycond-cemuhook.enable = true;
+
 }

@@ -13,7 +13,7 @@
 
   # Use the xanmod kernel
   boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
-  boot.kernelModules = [ "kvm-amd" ];
+  boot.kernelModules = [ "kvm-amd" "hid_nintendo" ];
   boot.extraModulePackages = with config.boot.kernelPackages; [ ];
   boot.kernelParams = [
     # Disable amd pstate to stop stupid boosting my cpu temp through the roof
