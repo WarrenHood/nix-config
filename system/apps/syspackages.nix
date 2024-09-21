@@ -43,5 +43,7 @@
     # Partition management
     parted
     gparted
+
+    corectrl
   ];
 }
