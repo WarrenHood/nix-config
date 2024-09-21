@@ -21,7 +21,7 @@
   fileSystems."/games" =
     { device = "/dev/disk/by-uuid/5536ab49-58e5-4de0-b017-be95b1c440f3";
       fsType = "ext4";
-      options = [ "rw" "users" "nofail" ];
+      options = [ "users" "nofail" ];
     };
 
   fileSystems."/boot" =
