@@ -39,5 +39,9 @@
         backgroundMode = "none";
       };
     })
+
+    # Partition management
+    parted
+    gparted
   ];
 }
