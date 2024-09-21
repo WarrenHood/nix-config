@@ -3,7 +3,7 @@
 
     programs.auto-cpufreq.settings = {
     charger = {
-      governor = "performance";
+      governor = "balance";
       turbo = "never";
     };
 
