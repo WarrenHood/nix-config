@@ -37,6 +37,7 @@
 
     stremio
     polychromatic
+    heroic # Epic games
   ];
 
     gtk = {
