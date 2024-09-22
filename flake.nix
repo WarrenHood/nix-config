@@ -62,6 +62,7 @@
             ./hosts/g14.nix
             ./system/optional/nvidia-g14.nix
             ./system/optional/asus.nix
+            ./system/optional/amd.nix
             (import ./system/optional/animegames.nix aagl)
             (import ./system/optional/gaming.nix user)
             (import ./system/razer user)
