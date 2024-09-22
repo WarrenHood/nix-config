@@ -19,6 +19,10 @@
     # Disable amd pstate to stop stupid boosting my cpu temp through the roof
     # "initcall_blacklist=amd_pstate_init"
     # "amd_pstate.enable=0"
+    
+    # (Maybe) make bluetooth reconnections work without needing to restart bluetooth service
+    # "btusb.enable_autosuspend=n"
+    # "usbcore.autosuspend=-1"
   ];
 
   fileSystems."/" =

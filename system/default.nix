@@ -12,6 +12,9 @@
     ./bluetooth.nix # Enable bluetooth
   ];
 
+  # Enable all firmware I suppose
+  # hardware.enableAllFirmware = true;
+
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 

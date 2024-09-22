@@ -1,12 +1,16 @@
-{ ... }: {
+{ pkgs, ... }: {
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true; # powers up the default Bluetooth controller on boot
+    package = pkgs.bluez;
     settings = {
+      Policy.AutoEnable = "true";
       General = {
         Enable = "Source,Sink,Media,Socket";
-        AutoEnable = true;
         ControllerMode = "bredr";
+        FastConnectable = "true";
+        Experimental = "true";
+        KernelExperimental = "true";
       };
     };
   };
