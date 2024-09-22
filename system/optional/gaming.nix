@@ -1,6 +1,6 @@
 # Common gaming stuff
 
-user: { ... }: {
+user: { pkgs, ... }: {
   imports = [
     (import ./gamemode.nix user)
     ./steam.nix
@@ -11,4 +11,6 @@ user: { ... }: {
   services.joycond.enable = true;
   programs.joycond-cemuhook.enable = true;
 
+  hardware.uinput.enable = true;
+  services.udev.packages = [ pkgs.game-devices-udev-rules ];
 }
