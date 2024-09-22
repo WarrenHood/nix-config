@@ -36,6 +36,7 @@
     mcmpmgr.packages.${system}.mcmpmgr
 
     stremio
+    polychromatic
   ];
 
     gtk = {

@@ -64,6 +64,7 @@
             ./system/optional/asus.nix
             (import ./system/optional/animegames.nix aagl)
             (import ./system/optional/gaming.nix user)
+            (import ./system/razer user)
             aagl.nixosModules.default
           ];
         })

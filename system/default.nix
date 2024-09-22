@@ -7,7 +7,6 @@
     ./services # System services
     ./apps # Install system-wide apps and programs
     ./networking # Networking and firewall settings
-    ./razer # Razer things
     ./autocpufreq # Automatic CPU Speed/Power Optimisation
     ./bluetooth.nix # Enable bluetooth
   ];

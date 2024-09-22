@@ -13,7 +13,6 @@
     waybar
     kitty
     font-awesome
-    openrazer-daemon # Most people use Razer keyboards and mice... Right?
     polychromatic
     pavucontrol
     wdisplays
