@@ -11,7 +11,8 @@ let
 in
 {
   home.packages = [
-    (pkgs.discord.override { withVencord = true; withTTS = true; })
+    # (pkgs.discord.override { withVencord = true; withTTS = true; })
+    pkgs.vesktop
     krisp-patcher # Need to patch ~/.config/discord/0.0.67/modules/discord_krisp/discord_krisp.node
   ];
 }
