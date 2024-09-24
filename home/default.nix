@@ -37,7 +37,11 @@
 
     stremio
     polychromatic
+
+    ## Games and launchers
     heroic # Epic games
+    cockatrice # MTG
+    osu-lazer-bin
   ];
 
     gtk = {
