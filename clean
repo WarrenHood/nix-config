@@ -11,4 +11,4 @@ if [ ! -n "$CURRENTHOST" ]; then
     exit 0
 fi
 
-nix-collect-garbage && nix-collect-garbage -d && sudo nixos-rebuild boot --flake .#$CURRENTHOST
+sudo nix-collect-garbage && sudo nix-collect-garbage -d && sudo nixos-rebuild boot --flake .#$CURRENTHOST
