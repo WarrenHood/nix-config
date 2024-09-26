@@ -43,7 +43,7 @@
     cockatrice # MTG
     osu-lazer-bin
 
-    forge-mtg
+    # forge-mtg
   ];
 
     gtk = {
