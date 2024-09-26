@@ -40,10 +40,12 @@
 
     ## Games and launchers
     heroic # Epic games
-    cockatrice # MTG
     osu-lazer-bin
 
-    # forge-mtg
+    # MTG things
+    cockatrice
+    forge-mtg
+    xmage
   ];
 
     gtk = {
