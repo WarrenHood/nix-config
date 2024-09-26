@@ -1,8 +1,8 @@
-{ pkgs, ... }: {
+{ pkgs, inputs, system, ... }: {
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true; # powers up the default Bluetooth controller on boot
-    package = pkgs.bluez;
+    package = inputs.nixpkgs-stable.legacyPackages.${system}.bluez;
     settings = {
       Policy.AutoEnable = "true";
       General = {
