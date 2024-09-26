@@ -42,6 +42,8 @@
     heroic # Epic games
     cockatrice # MTG
     osu-lazer-bin
+
+    forge-mtg
   ];
 
     gtk = {
