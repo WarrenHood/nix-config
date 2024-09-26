@@ -1,6 +1,6 @@
 # Common gaming stuff
 
-user: { pkgs, ... }: {
+{ pkgs, user, ... }: {
   imports = [
     (import ./gamemode.nix user)
     ./steam.nix

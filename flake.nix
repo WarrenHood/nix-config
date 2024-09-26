@@ -5,7 +5,6 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.05";
     home-manager = {
-      # url = "github:nix-community/home-manager/release-24.05";
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -32,7 +31,7 @@
     {
       nixosConfigurations.dell3550 = nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = { inherit inputs; inherit system; };
+        specialArgs = { inherit inputs; inherit system; inherit user; };
         modules = [
           ({ pkgs, ... }: {
             imports = [
@@ -54,7 +53,7 @@
       };
       nixosConfigurations.g14 = nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = { inherit inputs; inherit system; };
+        specialArgs = { inherit inputs; inherit system; inherit user; };
         modules = [
           ({ pkgs, ... }: {
             imports = [
@@ -63,9 +62,9 @@
               ./system/optional/nvidia-g14.nix
               ./system/optional/asus.nix
               ./system/optional/amd.nix
-              (import ./system/optional/animegames.nix aagl)
-              (import ./system/optional/gaming.nix user)
-              (import ./system/razer user)
+              ./system/optional/animegames.nix
+              ./system/optional/gaming.nix
+              ./system/razer
               aagl.nixosModules.default
             ];
           })

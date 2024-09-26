@@ -1,4 +1,4 @@
-user: { pkgs, ... }: {
+{ pkgs, user, ... }: {
   # Enable OpenRazer
   hardware.openrazer.enable = true;
   environment.systemPackages = with pkgs; [
