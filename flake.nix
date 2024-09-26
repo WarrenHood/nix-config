@@ -65,6 +65,7 @@
               ./system/optional/animegames.nix
               ./system/optional/gaming.nix
               ./system/razer
+              ./overlays/forge-mtg.nix
               aagl.nixosModules.default
             ];
           })
