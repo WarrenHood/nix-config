@@ -19,7 +19,7 @@ let
             cp -rv ./* $out
 
             cat << EOS > $out/bin/xmage
-            exec ${pkgs.jdk8}/bin/java -Xms256m -Xmx1024m -XX:MaxPermSize=384m -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -jar $out/xmage/mage-client/lib/mage-client-${strVersion}.jar
+            exec ${pkgs.jdk8}/bin/java -Xms256m -Xms2048m -XX:MaxPermSize=384m -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -jar $out/xmage/mage-client/lib/mage-client-${strVersion}.jar
             EOS
 
             chmod +x $out/bin/xmage
