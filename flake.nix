@@ -21,6 +21,9 @@
     # Anime games
     aagl.url = "github:ezKEa/aagl-gtk-on-nix";
     aagl.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Nix gaming stuff
+    nix-gaming.url = "github:fufexan/nix-gaming";
   };
 
   outputs = { self, nixpkgs, nixpkgs-stable, home-manager, mcmpmgr, aagl, auto-cpufreq, ... }@inputs:
@@ -75,7 +78,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.${user} = import ./home;
-            home-manager.extraSpecialArgs = { inherit user; inherit mcmpmgr; inherit system; };
+            home-manager.extraSpecialArgs = { inherit user; inherit mcmpmgr; inherit system; inherit inputs; };
           }
 
           auto-cpufreq.nixosModules.default

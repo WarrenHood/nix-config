@@ -42,7 +42,22 @@
       options = [ "fmask=0022" "dmask=0022" ];
     };
 
-  swapDevices = [ ];
+
+  # Star citizen requirements
+  boot.kernel.sysctl = {
+    # "vm.max_map_count" = 16777216; # Already set in platformOptimisations
+    "fs.file-max" = 524288;
+  };
+  # See RAM, ZRAM & Swap
+  swapDevices = [{
+    device = "/var/lib/swapfile";
+    size = 8 * 1024;  # 8 GB Swap
+  }];
+
+  zramSwap = {
+    enable = true;
+    memoryMax = 16 * 1024 * 1024 * 1024;  # 16 GB ZRAM
+  };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

@@ -5,6 +5,7 @@
   imports = [
     ./vscode.nix
     ./direnv.nix
+    ./star-citizen.nix
     ./discord
   ];
 
