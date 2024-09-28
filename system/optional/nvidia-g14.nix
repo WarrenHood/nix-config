@@ -1,6 +1,6 @@
 # Nvidia Config (Mostly taken from https://nixos.wiki/wiki/Nvidia)
 { config, ... }: {
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
   };
 

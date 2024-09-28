@@ -1,9 +1,9 @@
 {...}: {
-  services.xserver.layout = "us";
+  services.xserver.xkb.layout = "us";
 
   # xserver and sddm
   services.xserver.enable = true;
-  services.xserver.displayManager.sddm = {
+  services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
     enableHidpi = true;
