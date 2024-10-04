@@ -47,6 +47,9 @@
     cockatrice
     forge-mtg
     xmage
+
+    # Godot
+    godot_4
   ];
 
     gtk = {
