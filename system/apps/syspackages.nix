@@ -42,5 +42,8 @@
     # Partition management
     parted
     gparted
+
+    # Steam controller
+    sc-controller
   ];
 }
