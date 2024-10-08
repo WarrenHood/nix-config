@@ -177,11 +177,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1726782183,
-        "narHash": "sha256-b0meSL37wH8b3QXif/LGV3awHG3jZo6j+pfuQxo19N0=",
+        "lastModified": 1728431308,
+        "narHash": "sha256-XR5zHrpzHc/wXp1s8Yrmlt/wRrHSHajdd54mgLwfsto=",
         "owner": "WarrenHood",
         "repo": "MCModpackManager",
-        "rev": "6690e658148d695e963d9a61c8734a91906c216d",
+        "rev": "e6b4eff11e05f113410300c0f386fb76a5a78c09",
         "type": "github"
       },
       "original": {
