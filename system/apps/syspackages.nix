@@ -1,10 +1,10 @@
-{pkgs, ...}: {
+{pkgs, system, inputs, ...}: {
   environment.systemPackages = with pkgs; [
     vim # In case neovim ever breaks
     clang # For tree-sitter in Neovim
     neovim
     wget
-    firefox
+    inputs.nixpkgs-stable.legacyPackages.${system}.firefox
     alacritty
     wofi
     git
