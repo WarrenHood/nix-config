@@ -27,6 +27,7 @@
     mission-center # A nice task-manager like thing
 
     modrinth-app # Modrinth app for minecraft
+    prismlauncher # Prism launcher for when modrinth is broken
     zulu17 # java 17
 
     # Thermals and performance
@@ -72,7 +73,7 @@
   };
 
   home.pointerCursor = {
-    gtk.enable = true;
+    # gtk.enable = true;
     name = "breeze_cursors";
     package = pkgs.libsForQt5.breeze-icons;
     size = 16;
