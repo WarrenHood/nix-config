@@ -8,7 +8,7 @@
     wayland.enable = true;
     enableHidpi = true;
     autoNumlock = true;
-    theme = "where_is_my_sddm_theme";
+    # theme = "where_is_my_sddm_theme";
      settings = {
       Theme = {
         CursorTheme = "breeze_cursors";
