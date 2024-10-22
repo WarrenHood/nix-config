@@ -15,7 +15,7 @@
 
     programs.vscode = {
         enable = true;
-        mutableExtensionsDir = false;
+        mutableExtensionsDir = true;
         extensions = with pkgs.vscode-extensions; [
             # Git
             eamodio.gitlens
@@ -37,7 +37,7 @@
             # Nix
             jnoortheen.nix-ide
 
-#           # direnv for vscode. Mainly for nix shells
+            # direnv for vscode. Mainly for nix shells
             mkhl.direnv
       ];
       userSettings = {
