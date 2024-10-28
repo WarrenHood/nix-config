@@ -51,6 +51,9 @@
 
     # Godot
     godot_4
+
+    # Pipewire easyeffects
+    easyeffects
   ];
 
   # TODO: Uncomment this once home manager stops failing to replace /home/warren/.gtkrc-2.0
