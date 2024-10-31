@@ -56,28 +56,27 @@
     easyeffects
   ];
 
-  # TODO: Uncomment this once home manager stops failing to replace /home/warren/.gtkrc-2.0
-  # gtk = {
-  #   enable = true;
-  #   theme = {
-  #     name = "Breeze-Dark";
-  #     package = pkgs.libsForQt5.breeze-gtk;
-  #   };
-  #   iconTheme = {
-  #     name = "breeze-dark";
-  #     package = pkgs.libsForQt5.breeze-icons;
-  #   };
-  #   cursorTheme = {
-  #     name = "breeze_cursors";
-  #     package = pkgs.libsForQt5.breeze-icons;
-  #   };
-  #   gtk3 = {
-  #     extraConfig.gtk-application-prefer-dark-theme = true;
-  #   };
-  # };
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Breeze-Dark";
+      package = pkgs.libsForQt5.breeze-gtk;
+    };
+    iconTheme = {
+      name = "breeze-dark";
+      package = pkgs.libsForQt5.breeze-icons;
+    };
+    cursorTheme = {
+      name = "breeze_cursors";
+      package = pkgs.libsForQt5.breeze-icons;
+    };
+    gtk3 = {
+      extraConfig.gtk-application-prefer-dark-theme = true;
+    };
+  };
 
   home.pointerCursor = {
-    # gtk.enable = true;
+    gtk.enable = true;
     name = "breeze_cursors";
     package = pkgs.libsForQt5.breeze-icons;
     size = 16;
