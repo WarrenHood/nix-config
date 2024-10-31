@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   # Default all users to zsh
   users.defaultUserShell = pkgs.zsh;
 
@@ -6,6 +6,6 @@
     isNormalUser = true;
     description = "Warren";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
+    packages = with pkgs; [ ];
   };
 }

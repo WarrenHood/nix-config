@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   # Enable Hyprland
   # programs.hyprland.enable = true;
   # programs.hyprland.xwayland.enable = true;
@@ -23,7 +23,7 @@
     syntaxHighlighting.enable = true;
     ohMyZsh = {
       enable = true;
-      plugins = ["git" "rust" "direnv"];
+      plugins = [ "git" "rust" "direnv" ];
     };
   };
 

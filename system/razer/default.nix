@@ -5,5 +5,5 @@
     openrazer-daemon
     polychromatic
   ];
-  users.users.${user}.extraGroups = ["gamemode"];
+  users.users.${user}.extraGroups = [ "gamemode" ];
 }

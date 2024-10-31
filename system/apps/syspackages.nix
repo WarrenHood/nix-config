@@ -1,4 +1,4 @@
-{pkgs, system, inputs, ...}: {
+{ pkgs, system, inputs, ... }: {
   environment.systemPackages = with pkgs; [
     vim # In case neovim ever breaks
     clang # For tree-sitter in Neovim
@@ -19,12 +19,16 @@
     wireplumber
     rustup # TODO: Figure out how to automatically run rustup default stable
     neofetch
-    grim slurp swappy wl-clipboard # Screenshots in wayland
+    grim
+    slurp
+    swappy
+    wl-clipboard # Screenshots in wayland
     spotify
     hyprpaper # Set wallpapers on Hyprland
     fd
     ripgrep
-    nil nixpkgs-fmt
+    nil
+    nixpkgs-fmt
     lshw
     keepassxc
     xfce.thunar

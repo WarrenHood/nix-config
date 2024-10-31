@@ -5,7 +5,8 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "usbhid" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
@@ -19,25 +20,28 @@
     # Disable amd pstate to stop stupid boosting my cpu temp through the roof
     # "initcall_blacklist=amd_pstate_init"
     # "amd_pstate.enable=0"
-    
+
     # (Maybe) make bluetooth reconnections work without needing to restart bluetooth service
     # "btusb.enable_autosuspend=n"
     # "usbcore.autosuspend=-1"
   ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/dfe5cdc6-62b7-4ef0-aa0c-e38f4b4c6b24";
+    {
+      device = "/dev/disk/by-uuid/dfe5cdc6-62b7-4ef0-aa0c-e38f4b4c6b24";
       fsType = "ext4";
     };
-  
+
   fileSystems."/games" =
-    { device = "/dev/disk/by-uuid/5536ab49-58e5-4de0-b017-be95b1c440f3";
+    {
+      device = "/dev/disk/by-uuid/5536ab49-58e5-4de0-b017-be95b1c440f3";
       fsType = "ext4";
       options = [ "defaults" "users" "exec" "nofail" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/40F1-396F";
+    {
+      device = "/dev/disk/by-uuid/40F1-396F";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
@@ -51,12 +55,12 @@
   # See RAM, ZRAM & Swap
   swapDevices = [{
     device = "/var/lib/swapfile";
-    size = 8 * 1024;  # 8 GB Swap
+    size = 8 * 1024; # 8 GB Swap
   }];
 
   zramSwap = {
     enable = true;
-    memoryMax = 16 * 1024 * 1024 * 1024;  # 16 GB ZRAM
+    memoryMax = 16 * 1024 * 1024 * 1024; # 16 GB ZRAM
   };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

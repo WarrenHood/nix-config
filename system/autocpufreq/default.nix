@@ -1,7 +1,7 @@
 { pkgs, ... }: {
-   programs.auto-cpufreq.enable = true;
+  programs.auto-cpufreq.enable = true;
 
-    programs.auto-cpufreq.settings = {
+  programs.auto-cpufreq.settings = {
     charger = {
       governor = "performance";
       turbo = "never";
