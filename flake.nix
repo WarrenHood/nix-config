@@ -16,14 +16,20 @@
     # My minecraft modpack manager
     mcmpmgr = {
       url = "github:WarrenHood/MCModpackManager";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Anime games
-    aagl.url = "github:ezKEa/aagl-gtk-on-nix";
-    aagl.inputs.nixpkgs.follows = "nixpkgs";
+    aagl = {
+      url = "github:ezKEa/aagl-gtk-on-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Nix gaming stuff
-    nix-gaming.url = "github:fufexan/nix-gaming";
+    nix-gaming = {
+      url = "github:fufexan/nix-gaming";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, nixpkgs-stable, home-manager, mcmpmgr, aagl, auto-cpufreq, ... }@inputs:
