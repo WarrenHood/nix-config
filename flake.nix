@@ -30,6 +30,11 @@
       url = "github:fufexan/nix-gaming";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-vscode-extensions = {
+      url = "github:nix-community/nix-vscode-extensions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, nixpkgs-stable, home-manager, mcmpmgr, aagl, auto-cpufreq, ... }@inputs:
@@ -54,6 +59,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.${user} = import ./home;
+            home-manager.backupFileExtension = "hm-backup";
             home-manager.extraSpecialArgs = { inherit user; };
           }
 
@@ -84,6 +90,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.${user} = import ./home;
+            home-manager.backupFileExtension = "hm-backup";
             home-manager.extraSpecialArgs = { inherit user; inherit mcmpmgr; inherit system; inherit inputs; };
           }
 

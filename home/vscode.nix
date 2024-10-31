@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, inputs, system, ...}: {
 
     nixpkgs.overlays = [
       (final: prev: {
@@ -15,8 +15,8 @@
 
     programs.vscode = {
         enable = true;
-        mutableExtensionsDir = true;
-        extensions = with pkgs.vscode-extensions; [
+        mutableExtensionsDir = false;
+        extensions = with inputs.nix-vscode-extensions.extensions.${system}.vscode-marketplace; [
             # Git
             eamodio.gitlens
 
@@ -27,7 +27,6 @@
             # Rust
             rust-lang.rust-analyzer
             tamasfe.even-better-toml
-            serayuzgur.crates
             
             # Python
             ms-python.python
