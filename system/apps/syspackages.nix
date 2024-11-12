@@ -17,7 +17,6 @@
     pavucontrol
     wdisplays
     wireplumber
-    rustup # TODO: Figure out how to automatically run rustup default stable
     neofetch
     grim
     slurp
@@ -49,5 +48,8 @@
 
     # Steam controller
     sc-controller
+
+    # Rust from rust-overlay
+    rust-bin.stable.latest.default
   ];
 }

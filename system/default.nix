@@ -1,4 +1,4 @@
-{ ... }: {
+{ inputs, ... }: {
   imports = [
     ./bootloader # Bootloader
     ./users # Setup system users
@@ -9,6 +9,11 @@
     ./networking # Networking and firewall settings
     # ./autocpufreq # Automatic CPU Speed/Power Optimisation
     ./bluetooth.nix # Enable bluetooth
+  ];
+
+  # Overlays
+  nixpkgs.overlays = [
+    inputs.rust-overlay.overlays.default
   ];
 
   # Nix-gaming cachix
