@@ -54,6 +54,9 @@
 
     # Pipewire easyeffects
     easyeffects
+
+    # Reading
+    calibre
   ];
 
   gtk = {
