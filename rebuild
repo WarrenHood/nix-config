@@ -24,6 +24,9 @@ if [ ! -f ./hosts/$CURRENTHOST.nix ]; then
     nixos-generate-config --show-hardware-config > ./hosts/$CURRENTHOST.nix
 fi
 
+# Home manager is fucken stupid. Just delete the backups it makes
+rm $HOME/.gtkrc-2.0.backup
+
 # Rebuild for this host
 echo "Rebuilding for host: $CURRENTHOST"
 sudo nixos-rebuild switch --flake .#$CURRENTHOST
