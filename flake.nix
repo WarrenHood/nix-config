@@ -85,6 +85,7 @@
               ./system/optional/animegames.nix
               ./system/optional/gaming.nix
               ./system/optional/docker.nix
+              ./system/optional/waydroid.nix
               ./system/razer
               ./overlays
               aagl.nixosModules.default
