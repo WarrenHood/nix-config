@@ -38,6 +38,9 @@
 
       # direnv for vscode. Mainly for nix shells
       mkhl.direnv
+      
+      # Lua
+      sumneko.lua
     ];
     userSettings = {
       "workbench.colorTheme" = "Gruvbox Dark Medium";
