@@ -47,21 +47,21 @@
       "telemetry.telemetryLevel" = "off";
       "python.languageServer" = "None";
       "nix.enableLanguageServer" = true;
-      "nix.serverPath" = "nil";
+      "nix.serverPath" = "nixd";
       "nix.serverSettings" = {
-        "nil" = {
-          "diagnostics" = {
-            "ignored" = [
-              "unused_binding"
-              "unused_with"
-            ];
-          };
-          "formatting" = {
-            "command" = [
-              "nixpkgs-fmt"
-            ];
-          };
-        };
+        # "nil" = {
+        #   "diagnostics" = {
+        #     "ignored" = [
+        #       "unused_binding"
+        #       "unused_with"
+        #     ];
+        #   };
+        #   "formatting" = {
+        #     "command" = [
+        #       "nixpkgs-fmt"
+        #     ];
+        #   };
+        # };
       };
       "workbench.startupEditor" = "none";
       "editor.fontLigatures" = true;
