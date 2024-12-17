@@ -15,6 +15,15 @@
     # rate = 48000;
   };
 
+  # Lutris
+  environment.systemPackages = with pkgs; [
+    (lutris.override {
+      extraLibraries =  pkgs: [
+        # List library dependencies here
+      ];
+    })
+  ];
+
   # Enable gamescope and platform optimisations
   programs.gamescope.enable = true;
   programs.steam.platformOptimizations.enable = true;
