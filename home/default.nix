@@ -59,6 +59,12 @@
 
     # Reading
     calibre
+
+    # Torrenting
+    qbittorrent
+
+    # Free Open Source YT client
+    freetube
   ];
 
   gtk = {
