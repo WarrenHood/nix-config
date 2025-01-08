@@ -101,7 +101,8 @@
   };
 
   # Bluetooth applet
-  services.blueman-applet.enable = true;
+  # TODO: Re-enable when switching back to Hyprland
+  # services.blueman-applet.enable = true;
 
 
   home.stateVersion = "23.11";

@@ -3,8 +3,10 @@
 
   programs.auto-cpufreq.settings = {
     charger = {
-      governor = "performance";
-      # turbo = "never";
+      # governor = "performance";
+
+      governor = "schedutil";
+      turbo = "never";
       # scaling_max_freq = 3600000;
     };
 

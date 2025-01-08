@@ -13,13 +13,20 @@
   boot.initrd.kernelModules = [ ];
 
   # Use the xanmod kernel
-  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+  # boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+  
+  # Use the latest linux kernel
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  
   boot.kernelModules = [ "kvm-amd" "hid_nintendo" ];
   boot.extraModulePackages = with config.boot.kernelPackages; [ ];
   boot.kernelParams = [
     # Disable amd pstate to stop stupid boosting my cpu temp through the roof
     # "initcall_blacklist=amd_pstate_init"
     # "amd_pstate.enable=0"
+
+    # Set amd pstate to guided
+    "amd_pstate=guided"
 
     # (Maybe) make bluetooth reconnections work without needing to restart bluetooth service
     # "btusb.enable_autosuspend=n"
