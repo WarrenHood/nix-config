@@ -28,6 +28,9 @@
     # Set amd pstate to guided
     "amd_pstate=guided"
 
+    # Make Wayland and nvidia play nicely
+    "nvidia_drm.modeset=1"
+
     # (Maybe) make bluetooth reconnections work without needing to restart bluetooth service
     # "btusb.enable_autosuspend=n"
     # "usbcore.autosuspend=-1"

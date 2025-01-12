@@ -54,6 +54,9 @@
     # Godot
     godot_4
 
+    # Blender
+    blender
+
     # Pipewire easyeffects
     easyeffects
 
