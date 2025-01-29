@@ -36,6 +36,14 @@
     # "usbcore.autosuspend=-1"
   ];
 
+  environment.variables = { 
+    EDITOR = "nvim";
+    VISUAL = "nvim";
+    KWIN_X11_REFRESH_RATE=144000;
+    KWIN_X11_NO_SYNC_TO_VBLANK=1;
+    KWIN_X11_FORCE_SOFTWARE_VSYNC=1;
+  };
+
   fileSystems."/" =
     {
       device = "/dev/disk/by-uuid/dfe5cdc6-62b7-4ef0-aa0c-e38f4b4c6b24";

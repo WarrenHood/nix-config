@@ -68,6 +68,9 @@
 
     # Free Open Source YT client
     freetube
+
+    # Nexus mods app
+    nexusmods-app-unfree
   ];
 
   gtk = {
