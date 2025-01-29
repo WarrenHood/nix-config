@@ -48,8 +48,8 @@
 
     # MTG things
     cockatrice
-    forge-mtg
-    xmage
+    # forge-mtg
+    # xmage
 
     # Godot
     godot_4
@@ -70,7 +70,7 @@
     freetube
 
     # Nexus mods app
-    nexusmods-app-unfree
+    # nexusmods-app-unfree
   ];
 
   gtk = {
