@@ -1,5 +1,9 @@
-{ pkgs, ... }: {
+{ pkgs, inputs, ... }: 
+let 
+  pkgs-unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system};
+in
+  {
   environment.systemPackages = [
-    pkgs.r2modman
+    pkgs-unstable.r2modman
   ];
 }
