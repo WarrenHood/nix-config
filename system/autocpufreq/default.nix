@@ -1,4 +1,7 @@
 { pkgs, ... }: {
+  # Need to disable power-profiles-daemon otherwise it conflicts with auto-cpufreq
+  services.power-profiles-daemon.enable = false;
+
   programs.auto-cpufreq.enable = true;
 
   programs.auto-cpufreq.settings = {
