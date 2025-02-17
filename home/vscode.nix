@@ -47,6 +47,7 @@
       "workbench.colorTheme" = "Gruvbox Dark Medium";
       "telemetry.telemetryLevel" = "off";
       "python.languageServer" = "None";
+      "editor.formatOnSave" = true;
       "nix.enableLanguageServer" = true;
       "nix.serverPath" = "nixd";
       "nix.serverSettings" = {
