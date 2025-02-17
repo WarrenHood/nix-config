@@ -50,7 +50,7 @@
     sc-controller
 
     # Rust from rust-overlay
-    rust-bin.stable.latest.default
+    # rust-bin.stable.latest.default
 
     # Aircrack-ng
     aircrack-ng

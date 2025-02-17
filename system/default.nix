@@ -13,7 +13,7 @@
 
   # Overlays
   nixpkgs.overlays = [
-    inputs.rust-overlay.overlays.default
+    # inputs.rust-overlay.overlays.default
   ];
 
   # cachix
