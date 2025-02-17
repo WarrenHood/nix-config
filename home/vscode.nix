@@ -15,6 +15,7 @@
 
   programs.vscode = {
     enable = true;
+    package = pkgs.vscode;
     mutableExtensionsDir = false;
     extensions = with inputs.nix-vscode-extensions.extensions.${system}.vscode-marketplace; [
       # Git

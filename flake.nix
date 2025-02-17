@@ -41,7 +41,7 @@
 
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     rust-overlay = {
@@ -50,17 +50,21 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, mcmpmgr, aagl, auto-cpufreq, ... }@inputs:
+  outputs = {
+    self, nixpkgs, nixpkgs-stable, nixpkgs-unstable, home-manager, mcmpmgr, aagl, auto-cpufreq, ...
+  }@inputs:
     let
       system = "x86_64-linux";
       user = "warren";
+      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
     in
     {
       nixosConfigurations.dell3550 = nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = { inherit inputs; inherit system; inherit user; };
+        specialArgs = { inherit inputs; inherit system; inherit user; inherit pkgs-unstable; };
         modules = [
-          ({ pkgs, ... }: {
+          ({ ... }: {
             imports = [
               ./system
               ./hosts/dell3550.nix
@@ -69,11 +73,12 @@
 
           home-manager.nixosModules.home-manager
           {
+            nixpkgs.config.allowUnfree = true;
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.${user} = import ./home;
             home-manager.backupFileExtension = "backup"; 
-            home-manager.extraSpecialArgs = { inherit user; };
+            home-manager.extraSpecialArgs = { inherit user; inherit pkgs-unstable; };
           }
 
           # auto-cpufreq.nixosModules.default
@@ -81,9 +86,9 @@
       };
       nixosConfigurations.g14 = nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = { inherit inputs; inherit system; inherit user; };
+        specialArgs = { inherit inputs; inherit system; inherit user; inherit pkgs-unstable; };
         modules = [
-          ({ pkgs, ... }: {
+          ({ ... }: {
             imports = [
               ./system
               ./hosts/g14.nix
@@ -102,11 +107,14 @@
 
           home-manager.nixosModules.home-manager
           {
+            nixpkgs.config.allowUnfree = true;
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.${user} = import ./home;
             home-manager.backupFileExtension = "backup"; 
-            home-manager.extraSpecialArgs = { inherit user; inherit mcmpmgr; inherit system; inherit inputs; };
+            home-manager.extraSpecialArgs = {
+              inherit user; inherit mcmpmgr; inherit system; inherit inputs; inherit pkgs-unstable;
+            };
           }
 
           auto-cpufreq.nixosModules.default
