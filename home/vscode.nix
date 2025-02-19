@@ -1,4 +1,4 @@
-{ pkgs, inputs, system, ... }: {
+{ pkgs, pkgs-unfree, inputs, system, ... }: {
 
   nixpkgs.overlays = [
     (final: prev: {
@@ -15,7 +15,7 @@
 
   programs.vscode = {
     enable = true;
-    package = pkgs.vscode;
+    package = pkgs-unfree.vscode;
     mutableExtensionsDir = false;
     extensions = with inputs.nix-vscode-extensions.extensions.${system}.vscode-marketplace; [
       # Git
