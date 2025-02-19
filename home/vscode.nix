@@ -39,7 +39,7 @@
 
       # direnv for vscode. Mainly for nix shells
       mkhl.direnv
-      
+
       # Lua
       sumneko.lua
     ];
@@ -51,6 +51,11 @@
       "nix.enableLanguageServer" = true;
       "nix.serverPath" = "nixd";
       "nix.serverSettings" = {
+        "nixd" = {
+          formatting = {
+            command = [ "nixpkgs-fmt" ];
+          };
+        };
         # "nil" = {
         #   "diagnostics" = {
         #     "ignored" = [
@@ -68,6 +73,7 @@
       "workbench.startupEditor" = "none";
       "editor.fontLigatures" = true;
       "editor.fontFamily" = "'JetBrainsMono Nerd Font'";
+      "rust-analyzer.server.path" = "rust-analyzer";
     };
   };
 }
