@@ -30,7 +30,7 @@
 
     # modrinth-app # Modrinth app for minecraft
     prismlauncher # Prism launcher for when modrinth is broken
-    zulu17 # java 17
+    zulu21 # java 21
 
     # Thermals and performance
     s-tui # stres test tui
