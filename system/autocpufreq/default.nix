@@ -9,7 +9,7 @@
       # governor = "performance";
 
       governor = "schedutil";
-      turbo = "never";
+      # turbo = "never";
       # scaling_max_freq = 3600000;
     };
 
