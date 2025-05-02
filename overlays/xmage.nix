@@ -8,27 +8,20 @@ let
         url = "http://xmage.today/files/mage-full_${version}.zip";
         sha256 = "sha256-ss4gU+gnopnwssGxQ/+o7Z1bPJmJQfheV++kHsfRxrQ=";
       };
-    in
-    {
+    in {
       xmage = super.xmage.overrideAttrs {
         inherit src version;
 
-        installPhase =
-          ''
-            mkdir -p $out/bin
-            cp -rv ./* $out
+        installPhase = ''
+          mkdir -p $out/bin
+          cp -rv ./* $out
 
-            cat << EOS > $out/bin/xmage
-            exec ${pkgs.jdk8}/bin/java -Xms256m -Xms2048m -XX:MaxPermSize=384m -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -jar $out/xmage/mage-client/lib/mage-client-${strVersion}.jar
-            EOS
+          cat << EOS > $out/bin/xmage
+          exec ${pkgs.jdk8}/bin/java -Xms256m -Xms2048m -XX:MaxPermSize=384m -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -jar $out/xmage/mage-client/lib/mage-client-${strVersion}.jar
+          EOS
 
-            chmod +x $out/bin/xmage
-          '';
+          chmod +x $out/bin/xmage
+        '';
       };
     });
-in
-{
-  nixpkgs.overlays = [
-    xmage_overlay
-  ];
-}
+in { nixpkgs.overlays = [ xmage_overlay ]; }

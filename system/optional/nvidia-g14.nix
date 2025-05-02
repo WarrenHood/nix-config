@@ -1,8 +1,6 @@
 # Nvidia Config (Mostly taken from https://nixos.wiki/wiki/Nvidia)
 { config, ... }: {
-  hardware.graphics = {
-    enable = true;
-  };
+  hardware.graphics = { enable = true; };
 
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = [ "nvidia" ];
@@ -22,7 +20,6 @@
         enableOffloadCmd = true;
       };
     };
-
 
     # Modesetting is required.
     modesetting.enable = true;

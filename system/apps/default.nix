@@ -1,6 +1,1 @@
-{ ... }: {
-  imports = [
-    ./syspackages.nix
-    ./programs.nix
-  ];
-}
+{ ... }: { imports = [ ./syspackages.nix ./programs.nix ]; }

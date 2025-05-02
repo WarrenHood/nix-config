@@ -16,13 +16,15 @@
   };
 
   # Lutris
-  environment.systemPackages = with pkgs; [
-    (lutris.override {
-      extraLibraries =  pkgs: [
-        # List library dependencies here
-      ];
-    })
-  ];
+  environment.systemPackages = with pkgs;
+    [
+      (lutris.override {
+        extraLibraries = pkgs:
+          [
+            # List library dependencies here
+          ];
+      })
+    ];
 
   # Enable gamescope and platform optimisations
   programs.gamescope.enable = true;

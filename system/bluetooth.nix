@@ -14,5 +14,6 @@
       };
     };
   };
-  boot.extraModprobeConfig = '' options bluetooth disable_ertm=1 ''; # Let my controller connect
+  boot.extraModprobeConfig =
+    "options bluetooth disable_ertm=1 "; # Let my controller connect
 }

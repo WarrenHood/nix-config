@@ -4,24 +4,28 @@
 { config, lib, pkgs, modulesPath, inputs, ... }:
 
 {
-  imports =
-    [
-      (modulesPath + "/installer/scan/not-detected.nix")
-    ];
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "usbhid" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
+  boot.initrd.availableKernelModules = [
+    "nvme"
+    "xhci_pci"
+    "thunderbolt"
+    "usbhid"
+    "usb_storage"
+    "sd_mod"
+    "rtsx_pci_sdmmc"
+  ];
   boot.initrd.kernelModules = [ ];
 
   # Use the xanmod kernel
   # boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
-  
+
   # Use the latest linux kernel
   # boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelPackages = let
-      nixpkgs-unfree = inputs.nixpkgs-unfree.legacyPackages.${pkgs.system};
-    in
-      lib.mkForce nixpkgs-unfree.linuxKernel.packages.linux_xanmod_latest;
-  
+  boot.kernelPackages =
+    let nixpkgs-unfree = inputs.nixpkgs-unfree.legacyPackages.${pkgs.system};
+    in lib.mkForce nixpkgs-unfree.linuxKernel.packages.linux_xanmod_latest;
+
   boot.kernelModules = [ "kvm-amd" "hid_nintendo" ];
   boot.extraModulePackages = with config.boot.kernelPackages; [ ];
   boot.kernelParams = [
@@ -40,34 +44,30 @@
     # "usbcore.autosuspend=-1"
   ];
 
-  environment.variables = { 
+  environment.variables = {
     EDITOR = "nvim";
     VISUAL = "nvim";
-    KWIN_X11_REFRESH_RATE=144000;
-    KWIN_X11_NO_SYNC_TO_VBLANK=1;
-    KWIN_X11_FORCE_SOFTWARE_VSYNC=1;
+    KWIN_X11_REFRESH_RATE = 144000;
+    KWIN_X11_NO_SYNC_TO_VBLANK = 1;
+    KWIN_X11_FORCE_SOFTWARE_VSYNC = 1;
   };
 
-  fileSystems."/" =
-    {
-      device = "/dev/disk/by-uuid/dfe5cdc6-62b7-4ef0-aa0c-e38f4b4c6b24";
-      fsType = "ext4";
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/dfe5cdc6-62b7-4ef0-aa0c-e38f4b4c6b24";
+    fsType = "ext4";
+  };
 
-  fileSystems."/games" =
-    {
-      device = "/dev/disk/by-uuid/5536ab49-58e5-4de0-b017-be95b1c440f3";
-      fsType = "ext4";
-      options = [ "defaults" "users" "exec" "nofail" ];
-    };
+  fileSystems."/games" = {
+    device = "/dev/disk/by-uuid/5536ab49-58e5-4de0-b017-be95b1c440f3";
+    fsType = "ext4";
+    options = [ "defaults" "users" "exec" "nofail" ];
+  };
 
-  fileSystems."/boot" =
-    {
-      device = "/dev/disk/by-uuid/40F1-396F";
-      fsType = "vfat";
-      options = [ "fmask=0022" "dmask=0022" ];
-    };
-
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/40F1-396F";
+    fsType = "vfat";
+    options = [ "fmask=0022" "dmask=0022" ];
+  };
 
   # Star citizen requirements
   boot.kernel.sysctl = {
@@ -93,5 +93,6 @@
   # networking.interfaces.wlp2s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.amd.updateMicrocode =
+    lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

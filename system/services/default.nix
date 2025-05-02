@@ -9,13 +9,8 @@
     enableHidpi = true;
     autoNumlock = true;
     # theme = "where_is_my_sddm_theme";
-    settings = {
-      Theme = {
-        CursorTheme = "breeze_cursors";
-      };
-    };
+    settings = { Theme = { CursorTheme = "breeze_cursors"; }; };
   };
-
 
   # Enable pipewire service and rtkit
   security.rtkit.enable = true;
