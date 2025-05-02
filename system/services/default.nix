@@ -1,8 +1,7 @@
-{ lib, config, ... }: with lib; 
-let
-    cfg = config;
-in
-{
+{ lib, config, ... }:
+with lib;
+let cfg = config;
+in {
   services.xserver.xkb.layout = "us";
 
   # xserver and sddm

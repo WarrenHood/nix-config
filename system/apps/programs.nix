@@ -1,8 +1,7 @@
-{ lib, pkgs, config, ... }: with lib;
-let
-    cfg = config;    
-in
-{
+{ lib, pkgs, config, ... }:
+with lib;
+let cfg = config;
+in {
   # Enable Hyprland
   programs.hyprland.enable = mkIf (!cfg.headless) true;
   programs.hyprland.xwayland.enable = mkIf (!cfg.headless) true;
