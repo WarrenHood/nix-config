@@ -8,6 +8,8 @@
     alacritty
     wofi
     git
+    htop
+    ncdu
     stow
     gnumake
     waybar
