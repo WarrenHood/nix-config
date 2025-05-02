@@ -72,6 +72,7 @@
           ({ ... }: {
             imports =
               [ ./system ./system/optional/docker.nix ./hosts/dell3550.nix ];
+            headless = true;
           })
 
           # home-manager.nixosModules.home-manager

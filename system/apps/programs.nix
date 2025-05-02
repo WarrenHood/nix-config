@@ -1,13 +1,17 @@
-{ pkgs, ... }: {
+{ lib, pkgs, config, ... }: with lib;
+let
+    cfg = config;    
+in
+{
   # Enable Hyprland
-  programs.hyprland.enable = true;
-  programs.hyprland.xwayland.enable = true;
+  programs.hyprland.enable = mkIf (!cfg.headless) true;
+  programs.hyprland.xwayland.enable = mkIf (!cfg.headless) true;
 
   # Enable KDE Plasma 6
   # services.desktopManager.plasma6.enable = true;
 
   # Enable portals
-  xdg.portal = {
+  xdg.portal = mkIf (!cfg.headless) {
     enable = true;
     extraPortals = [
       pkgs.xdg-desktop-portal-hyprland
