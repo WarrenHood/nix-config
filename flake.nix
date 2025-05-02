@@ -77,21 +77,22 @@
           ({ ... }: {
             imports = [
               ./system
+              ./system/optional/docker.nix
               ./hosts/dell3550.nix
             ];
           })
 
-          home-manager.nixosModules.home-manager
-          {
-            nixpkgs.config.allowUnfree = true;
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.${user} = import ./home;
-            home-manager.backupFileExtension = "backup";
-            home-manager.extraSpecialArgs = { inherit user; inherit pkgs-unstable; inherit pkgs-unfree; };
-          }
+          # home-manager.nixosModules.home-manager
+          # {
+          #   nixpkgs.config.allowUnfree = true;
+          #   home-manager.useGlobalPkgs = true;
+          #   home-manager.useUserPackages = true;
+          #   home-manager.users.${user} = import ./home;
+          #   home-manager.backupFileExtension = "backup";
+          #   home-manager.extraSpecialArgs = { inherit user; inherit pkgs-unstable; inherit pkgs-unfree; };
+          # }
 
-          # auto-cpufreq.nixosModules.default
+          auto-cpufreq.nixosModules.default
         ];
       };
       nixosConfigurations.g14 = nixpkgs.lib.nixosSystem {
