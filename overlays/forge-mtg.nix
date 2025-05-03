@@ -8,7 +8,8 @@ let
           "https://github.com/Card-Forge/forge/releases/download/forge-${version}/forge-gui-desktop-${version}.tar.bz2";
         sha256 = "sha256-GqB79yAldbUIIq8Ui3bkymqd8DimQiZ0RtD2zPZ7t+E=";
       };
-    in {
+    in
+    {
       forge-mtg = super.stdenv.mkDerivation {
         inherit src version;
         pname = "forge-mtg";
@@ -46,4 +47,5 @@ let
         };
       };
     });
-in { nixpkgs.overlays = [ forge_overlay ]; }
+in
+{ nixpkgs.overlays = [ forge_overlay ]; }

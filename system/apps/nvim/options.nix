@@ -1,6 +1,5 @@
-{ ... }:
-{
-  globalOpts = {};
+{ ... }: {
+  globalOpts = { };
 
   opts = {
     number = true;

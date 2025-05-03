@@ -11,8 +11,8 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     nixvim = {
-        url = "github:nix-community/nixvim";
-        inputs.nixpkgs.follows = "nixpkgs-unstable";
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     home-manager = {
       # url = "github:nix-community/home-manager"; # Unstable
@@ -54,15 +54,26 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, nixpkgs-unfree, nixpkgs-unstable
-    , home-manager, mcmpmgr, aagl, auto-cpufreq, ... }@inputs:
+  outputs =
+    { self
+    , nixpkgs
+    , nixpkgs-stable
+    , nixpkgs-unfree
+    , nixpkgs-unstable
+    , home-manager
+    , mcmpmgr
+    , aagl
+    , auto-cpufreq
+    , ...
+    }@inputs:
     let
       system = "x86_64-linux";
       user = "warren";
       pkgs = nixpkgs.legacyPackages.${system};
       pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
       pkgs-unfree = nixpkgs-unfree.legacyPackages.${system};
-    in {
+    in
+    {
       nixosConfigurations.dell3550 = nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = {

@@ -5,16 +5,10 @@
 
     telescope = {
       enable = true;
-      extensions = {
-        fzf-native = {
-          enable = true;
-        };
-      };
+      extensions = { fzf-native = { enable = true; }; };
     };
 
-    nix = {
-      enable = true;
-    };
+    nix = { enable = true; };
 
     lsp = {
       enable = true;
@@ -22,11 +16,7 @@
         bashls.enable = true;
         nixd = {
           enable = true;
-          settings = {
-            formatting = {
-              command = [ "nixpkgs-fmt" ];
-            };
-          };
+          settings = { formatting = { command = [ "nixpkgs-fmt" ]; }; };
         };
         pyright.enable = true;
         rust_analyzer = {
@@ -78,9 +68,7 @@
       popupBorderStyle = "rounded";
       buffers = {
         bindToCwd = false;
-        followCurrentFile = {
-          enabled = true;
-        };
+        followCurrentFile = { enabled = true; };
       };
       window = {
         width = 40;
