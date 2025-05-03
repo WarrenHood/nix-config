@@ -1,7 +1,8 @@
 { pkgs, ... }: {
-  environment.systemPackages = with pkgs; [
-    # corectrl
-    # radeon-profile
-    amdctl
-  ];
+  environment.systemPackages = with pkgs;
+    [
+      # corectrl
+      # radeon-profile
+      amdctl
+    ];
 }

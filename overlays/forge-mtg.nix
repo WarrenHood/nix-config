@@ -4,7 +4,8 @@ let
   forge_overlay = (self: super:
     let
       src = super.fetchurl {
-        url = "https://github.com/Card-Forge/forge/releases/download/forge-${version}/forge-gui-desktop-${version}.tar.bz2";
+        url =
+          "https://github.com/Card-Forge/forge/releases/download/forge-${version}/forge-gui-desktop-${version}.tar.bz2";
         sha256 = "sha256-GqB79yAldbUIIq8Ui3bkymqd8DimQiZ0RtD2zPZ7t+E=";
       };
     in
@@ -26,12 +27,13 @@ let
           runHook postInstall
         '';
 
-
         preFixup = ''
           for commandToInstall in forge forge-adventure forge-adventure-editor; do
             chmod 555 $out/share/forge/$commandToInstall.sh
             makeWrapper $out/share/forge/$commandToInstall.sh $out/bin/$commandToInstall \
-              --prefix PATH : ${lib.makeBinPath [ pkgs.coreutils pkgs.openjdk pkgs.gnused ]} \
+              --prefix PATH : ${
+                lib.makeBinPath [ pkgs.coreutils pkgs.openjdk pkgs.gnused ]
+              } \
               --set JAVA_HOME ${pkgs.openjdk}/lib/openjdk \
               --set SENTRY_DSN ""
           done
@@ -46,8 +48,4 @@ let
       };
     });
 in
-{
-  nixpkgs.overlays = [
-    forge_overlay
-  ];
-}
+{ nixpkgs.overlays = [ forge_overlay ]; }

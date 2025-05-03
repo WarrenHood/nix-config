@@ -2,12 +2,7 @@
   home.username = "${user}";
   home.homeDirectory = "/home/${user}";
 
-  imports = [
-    ./vscode.nix
-    ./direnv.nix
-    ./star-citizen.nix
-    ./discord
-  ];
+  imports = [ ./vscode.nix ./direnv.nix ./star-citizen.nix ./discord ];
 
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
@@ -90,9 +85,7 @@
       name = "breeze_cursors";
       package = pkgs.libsForQt5.breeze-icons;
     };
-    gtk3 = {
-      extraConfig.gtk-application-prefer-dark-theme = true;
-    };
+    gtk3 = { extraConfig.gtk-application-prefer-dark-theme = true; };
   };
 
   home.pointerCursor = {
@@ -112,7 +105,6 @@
   # Bluetooth applet
   # TODO: Re-enable when switching back to Hyprland
   # services.blueman-applet.enable = true;
-
 
   home.stateVersion = "23.11";
   programs.home-manager.enable = true;
