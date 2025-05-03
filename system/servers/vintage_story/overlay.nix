@@ -2,11 +2,12 @@
 let
   cfg = config.servers.vintage_story;
   runtime_opts = {
-    tfm = "net8.0";
-    framework_version = "8.0.0";
+    tfm = cfg.net_tfm;
+    framework_version = cfg.net_framework_version;
   };
-  version = "1.20.9";
-  fileHash = "sha256-a5Hk3xdOmXrfNgLVzA/OHdDrTTfPKqsyVpiMTbYXNHw=";
+  version = cfg.version;
+  fileHash = cfg.server_hash;
+  dotnet-runtime = cfg.dotnet_runtime_package;
   vintagestory_overlay = (self: super:
     let
       src = super.fetchurl {
@@ -21,7 +22,7 @@ let
 
         sourceRoot = ".";
 
-        buildInputs = [ pkgs.dotnet-runtime_8 ];
+        buildInputs = [ dotnet-runtime ];
 
         nativeBuildInputs = [
           super.makeWrapper
@@ -29,22 +30,8 @@ let
 
         runtimeLibs = lib.makeLibraryPath (
           [
-            # gtk2
             pkgs.sqlite
-            # openal
-            # cairo
-            # libGLU
-            # SDL2
-            # freealut
-            # libglvnd
-            # pipewire
-            # libpulseaudio
           ]
-          # ++ (with xorg; [
-          #   libX11
-          #   libXi
-          #   libXcursor
-          # ])
         );
 
         desktopItems = [ ];
@@ -69,7 +56,7 @@ let
 
         preFixup =
           ''
-            makeWrapper ${pkgs.dotnet-runtime_8}/bin/dotnet $out/bin/vintagestory-server \
+            makeWrapper ${dotnet-runtime}/bin/dotnet $out/bin/vintagestory-server \
               --prefix LD_LIBRARY_PATH : "${runtimeLibs}" \
               --add-flags $out/share/vintagestory/VintagestoryServer.dll
           ''

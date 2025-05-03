@@ -16,8 +16,28 @@ in
     servers.vintage_story = {
       enable = mkEnableOption "Vintage Story Server";
       dataPath = mkOption {
-        type = types.string;
+        type = types.path;
         default = "${config.users.users.${user}.home}/.server_data/vintage_story";
+      };
+      version = mkOption {
+        type = types.str;
+        default = "1.20.9";
+      };
+      server_hash = mkOption {
+        type = types.str;
+        default = "sha256-a5Hk3xdOmXrfNgLVzA/OHdDrTTfPKqsyVpiMTbYXNHw=";
+      };
+      dotnet_runtime_package = mkOption {
+        type = types.package;
+        default = pkgs.dotnet-runtime_8;
+      };
+      net_framework_version = mkOption {
+        type = types.str;
+        default = "8.0.0";
+      };
+      net_tfm = mkOption {
+        type = types.str;
+        default = "net8.0";
       };
     };
   };
@@ -28,6 +48,7 @@ in
     systemd.services.vintage_story_server = {
       description = "Vintage Story Server";
       after = [ "network-online.target" ];
+      wants = [ "network-online.target" ];
       wantedBy = [ "default.target" ];
       serviceConfig = {
         User = user;

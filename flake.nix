@@ -89,7 +89,10 @@
             imports =
               [ ./system ./system/optional/docker.nix ./hosts/dell3550.nix ];
             headless = true;
-            servers.vintage_story.enable = true;
+            servers.vintage_story = {
+              enable = true;
+              version = "1.20.9";
+            };
           })
 
           # home-manager.nixosModules.home-manager
