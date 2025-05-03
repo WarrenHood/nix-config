@@ -16,6 +16,9 @@
     };
   };
 
+  # Flatpak
+  services.flatpak.enable = true;
+
 
   # Enable pipewire service and rtkit
   security.rtkit.enable = true;
