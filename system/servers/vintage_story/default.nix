@@ -1,6 +1,33 @@
 { inputs, pkgs, lib, config, user, system, ... }: with lib;
 let
   cfg = config.servers.vintage_story;
+  vs_wrapper = (pkgs.writeShellScriptBin "vs-server-wrapper" ''
+    #!${pkgs.runtimeShell}
+    # Start the server in a screen session called vintage_story_server
+    # This should be easy to interact with using screen -r vintage_story_server
+    ${pkgs.screen}/bin/screen -L -dmS vintage_story_server ${pkgs.vintagestory}/bin/vintagestory-server --dataPath="${cfg.dataPath}"
+
+    # Wait for the screen session to end
+    while ${pkgs.screen}/bin/screen -ls | grep -q vintage_story_server; do
+      sleep 1
+    done
+
+    echo "Vintage story server screen session has ended."
+  '');
+  stop_wrapper = pkgs.writeShellScriptBin "vs-server-stop-wrapper" ''
+    #!${pkgs.runtimeShell}
+    # This script asks the vintage story server to stop gracefully, and waits for its screen session to end
+
+    # Send the /stop 0 command to the screen session and wait for it to finish
+    ${pkgs.screen}/bin/screen -XS vintage_story_server stuff '/stop 0\n'
+
+    # Wait for the screen session to terminate gracefully
+    while ${pkgs.screen}/bin/screen -ls | grep -q vintage_story_server; do
+      sleep 1
+    done
+
+    echo "Vintage Story Server gracefully stopped."
+  '';
 in
 {
   options = {
@@ -45,8 +72,19 @@ in
         User = user;
         Group = "users";
         SupplementaryGroups = [ "users" ];
-        ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p \"${cfg.dataPath}\"";
-        ExecStart = "${pkgs.vintagestory}/bin/vintagestory-server --dataPath=\"${cfg.dataPath}\"";
+        ExecStartPre = [
+          # Ensure the data directory exists
+          "${pkgs.coreutils}/bin/mkdir -p \"${cfg.dataPath}\""
+
+          # Kill any existing screen sessions
+          "-${pkgs.screen}/bin/screen -XS vintage_story_server quit"
+        ];
+        ExecStart = "${pkgs.screen}/bin/screen -L -dmS vintage_story_server ${pkgs.vintagestory}/bin/vintagestory-server --dataPath=\"${cfg.dataPath}\"";
+        # ExecStart = "${vs_wrapper}/bin/vs-server-wrapper";
+        ExecStop = "${stop_wrapper}/bin/vs-server-stop-wrapper";
+        # ExecStop = "${pkgs.screen}/bin/screen -XS vintage_story_server stuff '/stop 0\\n'";
+        TimeoutStopSec = 30;
+        Type = "forking";
         WorkingDirectory = cfg.dataPath;
       };
     };
