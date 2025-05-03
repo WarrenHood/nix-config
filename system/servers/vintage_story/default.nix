@@ -1,19 +1,7 @@
-{ inputs, pkgs, lib, config, user, system, ... }: with lib;
+{ pkgs, lib, config, user, ... }: with lib;
 let
   cfg = config.servers.vintage_story;
-  vs_wrapper = (pkgs.writeShellScriptBin "vs-server-wrapper" ''
-    #!${pkgs.runtimeShell}
-    # Start the server in a screen session called vintage_story_server
-    # This should be easy to interact with using screen -r vintage_story_server
-    ${pkgs.screen}/bin/screen -L -dmS vintage_story_server ${pkgs.vintagestory}/bin/vintagestory-server --dataPath="${cfg.dataPath}"
-
-    # Wait for the screen session to end
-    while ${pkgs.screen}/bin/screen -ls | grep -q vintage_story_server; do
-      sleep 1
-    done
-
-    echo "Vintage story server screen session has ended."
-  '');
+  vs_server = (lib.callPackageWith pkgs ./package.nix { inherit cfg; });
   stop_wrapper = pkgs.writeShellScriptBin "vs-server-stop-wrapper" ''
     #!${pkgs.runtimeShell}
     # This script asks the vintage story server to stop gracefully, and waits for its screen session to end
@@ -60,8 +48,6 @@ in
     };
   };
 
-  imports = [ ./overlay.nix ];
-
   config = mkIf cfg.enable {
     systemd.services.vintage_story_server = {
       description = "Vintage Story Server";
@@ -79,10 +65,8 @@ in
           # Kill any existing screen sessions
           "-${pkgs.screen}/bin/screen -XS vintage_story_server quit"
         ];
-        ExecStart = "${pkgs.screen}/bin/screen -L -dmS vintage_story_server ${pkgs.vintagestory}/bin/vintagestory-server --dataPath=\"${cfg.dataPath}\"";
-        # ExecStart = "${vs_wrapper}/bin/vs-server-wrapper";
+        ExecStart = "${pkgs.screen}/bin/screen -L -dmS vintage_story_server ${vs_server}/bin/vintagestory-server --dataPath=\"${cfg.dataPath}\"";
         ExecStop = "${stop_wrapper}/bin/vs-server-stop-wrapper";
-        # ExecStop = "${pkgs.screen}/bin/screen -XS vintage_story_server stuff '/stop 0\\n'";
         TimeoutStopSec = 30;
         Type = "forking";
         WorkingDirectory = cfg.dataPath;
