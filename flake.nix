@@ -92,6 +92,7 @@
             servers.vintage_story = {
               enable = true;
               version = "1.20.9";
+              server_hash = "sha256-a5Hk3xdOmXrfNgLVzA/OHdDrTTfPKqsyVpiMTbYXNHw=";
             };
           })
 
