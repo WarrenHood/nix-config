@@ -1,8 +1,14 @@
-{ pkgs, ... }: {
-  environment.systemPackages = with pkgs; [
+{ lib, pkgs, pkgs-unstable, inputs, ... }:
+let
+  callUnstablePackage = lib.callPackageWith pkgs-unstable;
+in
+{
+  environment.systemPackages = with pkgs;
+  [
     vim # In case neovim ever breaks
     clang # For tree-sitter in Neovim
-    neovim
+    # neovim
+    (callUnstablePackage ./nvim { inherit inputs; })
     wget
     git
     htop
@@ -12,8 +18,9 @@
     neofetch
     fd
     ripgrep
-    nil
-    nixpkgs-fmt
+    # nil
+    # nixd
+    # nixpkgs-fmt
     lshw
 
     # Partition management

@@ -10,6 +10,10 @@
       url = "github:numtide/nixpkgs-unfree";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    nixvim = {
+        url = "github:nix-community/nixvim";
+        inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
     home-manager = {
       # url = "github:nix-community/home-manager"; # Unstable
       url = "github:nix-community/home-manager/release-24.11";
