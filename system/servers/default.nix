@@ -1,0 +1,5 @@
+{ ... }: {
+  imports = [
+    ./vintage_story
+  ];
+}

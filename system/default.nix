@@ -10,10 +10,13 @@ with lib; {
     ./networking # Networking and firewall settings
     ./autocpufreq # Automatic CPU Speed/Power Optimisation
     ./bluetooth.nix # Enable bluetooth
+    ./servers # Set up any servers
   ];
 
   # Options
-  options = { headless = mkEnableOption "Headless Mode"; };
+  options = {
+    headless = mkEnableOption "headless system";
+  };
 
   # Configs
   config = {

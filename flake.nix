@@ -81,6 +81,7 @@
           inherit system;
           inherit user;
           inherit pkgs-unstable;
+          inherit nixpkgs-unstable;
           inherit pkgs-unfree;
         };
         modules = [
@@ -88,6 +89,7 @@
             imports =
               [ ./system ./system/optional/docker.nix ./hosts/dell3550.nix ];
             headless = true;
+            servers.vintage_story.enable = true;
           })
 
           # home-manager.nixosModules.home-manager
@@ -110,6 +112,7 @@
           inherit system;
           inherit user;
           inherit pkgs-unstable;
+          inherit nixpkgs-unstable;
           inherit pkgs-unfree;
         };
         modules = [
