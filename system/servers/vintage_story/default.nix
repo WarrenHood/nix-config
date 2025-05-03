@@ -1,15 +1,6 @@
 { inputs, pkgs, lib, config, user, system, ... }: with lib;
 let
   cfg = config.servers.vintage_story;
-  # pkgs = (import inputs.nixpkgs-unstable {
-  #   inherit system;
-  #   config = {
-  #     allowUnfree = true;
-  #     permittedInsecurePackages = [
-  #       "dotnet-runtime-7.0.20"
-  #     ];
-  #   };
-  # });
 in
 {
   options = {
@@ -56,6 +47,7 @@ in
         SupplementaryGroups = [ "users" ];
         ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p \"${cfg.dataPath}\"";
         ExecStart = "${pkgs.vintagestory}/bin/vintagestory-server --dataPath=\"${cfg.dataPath}\"";
+        WorkingDirectory = cfg.dataPath;
       };
     };
   };
