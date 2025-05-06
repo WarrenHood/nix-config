@@ -66,6 +66,9 @@
 
     # Nexus mods app
     # nexusmods-app-unfree
+
+    # Final Fantasy 14 Launcher
+    xivlauncher
   ];
 
   gtk = {

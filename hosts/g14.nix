@@ -57,11 +57,11 @@
     fsType = "ext4";
   };
 
-  fileSystems."/games" = {
-    device = "/dev/disk/by-uuid/5536ab49-58e5-4de0-b017-be95b1c440f3";
-    fsType = "ext4";
-    options = [ "defaults" "users" "exec" "nofail" ];
-  };
+  # fileSystems."/games" = {
+  #   device = "/dev/disk/by-uuid/5536ab49-58e5-4de0-b017-be95b1c440f3";
+  #   fsType = "ext4";
+  #   options = [ "defaults" "users" "exec" "nofail" ];
+  # };
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/40F1-396F";

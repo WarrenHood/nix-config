@@ -15,6 +15,10 @@ in {
     settings = { Theme = { CursorTheme = "breeze_cursors"; }; };
   };
 
+  # Flatpak
+  services.flatpak.enable = mkIf (!cfg.headless) true;
+
+
   # Enable pipewire service and rtkit
   security.rtkit.enable = mkIf (!cfg.headless) true;
   services.pipewire = mkIf (!cfg.headless) {
