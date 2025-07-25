@@ -91,8 +91,8 @@
             headless = true;
             servers.vintage_story = {
               enable = true;
-              version = "1.20.9";
-              server_hash = "sha256-a5Hk3xdOmXrfNgLVzA/OHdDrTTfPKqsyVpiMTbYXNHw=";
+              version = "1.20.12";
+              server_hash = "sha256-DqLHv9lVxXTG/qRJ2f6DFuJkB8gmHDAUiHD+d+RZpJQ=";
             };
           })
 
