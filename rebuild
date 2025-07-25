@@ -5,6 +5,8 @@ if [ -f ./host ]; then
     source ./host
 fi
 
+export NIXPKGS_ALLOW_INSECURE=1
+
 # Ensure the CURRENTHOST is set
 if [ ! -n "$CURRENTHOST" ]; then
     echo "Environment variable CURRENTHOST is not set or empty. You can export it in a file called 'host' in this directory"
@@ -29,4 +31,4 @@ rm $HOME/.gtkrc-2.0.backup 2>/dev/null
 
 # Rebuild for this host
 echo "Rebuilding for host: $CURRENTHOST"
-sudo nixos-rebuild switch --flake .#$CURRENTHOST
+sudo nixos-rebuild switch --flake .#$CURRENTHOST --impure

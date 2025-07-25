@@ -1,4 +1,4 @@
-{ config, pkgs, user, mcmpmgr, system, ... }: {
+{ config, pkgs, pkgs-unfree, user, mcmpmgr, system, ... }: {
   home.username = "${user}";
   home.homeDirectory = "/home/${user}";
 
@@ -69,6 +69,9 @@
 
     # Final Fantasy 14 Launcher
     xivlauncher
+
+    # Vintage story
+    pkgs-unfree.vintagestory
   ];
 
   gtk = {
