@@ -71,7 +71,7 @@
     # xivlauncher
 
     # Vintage story
-    pkgs-unfree.vintagestory
+    # pkgs-unfree.vintagestory
   ];
 
   gtk = {
