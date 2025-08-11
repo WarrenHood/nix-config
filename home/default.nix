@@ -38,7 +38,7 @@
     polychromatic
 
     ## Games and launchers
-    heroic # Epic games
+    # heroic # Epic games
     osu-lazer-bin
 
     # MTG things
