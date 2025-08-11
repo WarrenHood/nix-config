@@ -32,7 +32,7 @@
     stress # stress testing
 
     # My minecraft package manager
-    mcmpmgr.packages.${system}.mcmpmgr
+    # mcmpmgr.packages.${system}.mcmpmgr
 
     stremio
     polychromatic
@@ -42,7 +42,7 @@
     osu-lazer-bin
 
     # MTG things
-    cockatrice
+    # cockatrice
     # forge-mtg
     # xmage
 
@@ -68,7 +68,7 @@
     # nexusmods-app-unfree
 
     # Final Fantasy 14 Launcher
-    xivlauncher
+    # xivlauncher
 
     # Vintage story
     pkgs-unfree.vintagestory
