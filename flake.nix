@@ -52,6 +52,8 @@
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
   };
 
   outputs =
@@ -64,6 +66,7 @@
     , mcmpmgr
     , aagl
     , auto-cpufreq
+    , determinate
     , ...
     }@inputs:
     let
@@ -107,6 +110,8 @@
           # }
 
           auto-cpufreq.nixosModules.default
+
+          determinate.nixosModules.default
         ];
       };
       nixosConfigurations.g14 = nixpkgs.lib.nixosSystem {
@@ -155,6 +160,8 @@
           }
 
           auto-cpufreq.nixosModules.default
+
+          determinate.nixosModules.default
         ];
       };
     };

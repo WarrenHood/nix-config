@@ -29,4 +29,7 @@ rm $HOME/.gtkrc-2.0.backup 2>/dev/null
 
 # Rebuild for this host
 echo "Rebuilding for host: $CURRENTHOST"
-sudo nixos-rebuild switch --flake .#$CURRENTHOST
+sudo nixos-rebuild \
+    --option extra-substituters https://install.determinate.systems \
+    --option extra-trusted-public-keys cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM= \
+    switch --flake .#$CURRENTHOST
