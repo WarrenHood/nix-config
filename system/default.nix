@@ -41,6 +41,8 @@ with lib; {
     # Enable flakes
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+    nix.settings.lazy-trees = true;
+
     # Allow unfree packages
     nixpkgs.config.allowUnfree = true;
 

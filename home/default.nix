@@ -1,4 +1,4 @@
-{ config, pkgs, user, mcmpmgr, system, ... }: {
+{ config, pkgs, pkgs-unfree, user, mcmpmgr, system, ... }: {
   home.username = "${user}";
   home.homeDirectory = "/home/${user}";
 
@@ -32,17 +32,17 @@
     stress # stress testing
 
     # My minecraft package manager
-    mcmpmgr.packages.${system}.mcmpmgr
+    # mcmpmgr.packages.${system}.mcmpmgr
 
     stremio
     polychromatic
 
     ## Games and launchers
-    heroic # Epic games
+    # heroic # Epic games
     osu-lazer-bin
 
     # MTG things
-    cockatrice
+    # cockatrice
     # forge-mtg
     # xmage
 
@@ -68,7 +68,10 @@
     # nexusmods-app-unfree
 
     # Final Fantasy 14 Launcher
-    xivlauncher
+    # xivlauncher
+
+    # Vintage story
+    # pkgs-unfree.vintagestory
   ];
 
   gtk = {
