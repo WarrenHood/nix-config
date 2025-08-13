@@ -30,6 +30,7 @@
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
   networking.firewall.allowedTCPPorts = [ 25565 ];
+  networking.firewall.allowedUDPPorts = [ 9876 9877 ];
   # networking.interfaces.eno2.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlo1.useDHCP = lib.mkDefault true;
 
