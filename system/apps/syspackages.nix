@@ -28,5 +28,11 @@ in {
 
     # Aircrack-ng
     aircrack-ng
+
+    # Java JRE LTS
+    temurin-jre-bin
+
+    p7zip
+
   ];
 }
