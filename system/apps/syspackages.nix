@@ -34,5 +34,6 @@ in {
 
     p7zip
 
+    tmux
   ];
 }
