@@ -18,6 +18,10 @@ in {
   # Flatpak
   services.flatpak.enable = mkIf (!cfg.headless) true;
 
+  # Tailscale
+  services.tailscale.enable = true;
+  services.tailscale.useRoutingFeatures = "client";
+
 
   # Enable pipewire service and rtkit
   security.rtkit.enable = mkIf (!cfg.headless) true;

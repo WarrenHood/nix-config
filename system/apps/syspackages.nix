@@ -1,4 +1,4 @@
-{ lib, pkgs, pkgs-unstable, inputs, ... }:
+{ lib, pkgs, pkgs-unstable, inputs, system, ... }:
 let callUnstablePackage = lib.callPackageWith pkgs-unstable;
 in {
   environment.systemPackages = with pkgs; [
@@ -35,5 +35,7 @@ in {
     p7zip
 
     tmux
+
+    inputs.mcmpmgr.packages.${system}.mcmpmgr
   ];
 }
