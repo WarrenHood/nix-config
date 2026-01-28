@@ -164,5 +164,27 @@
           determinate.nixosModules.default
         ];
       };
+
+      nixosConfigurations.g14-wsl = nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = {
+          inherit inputs;
+          inherit system;
+          inherit user;
+          inherit pkgs-unstable;
+          inherit nixpkgs-unstable;
+          inherit pkgs-unfree;
+        };
+        modules = [
+          ({ ... }: {
+            imports =
+              [ ./system ./system/optional/docker.nix ./hosts/g14-wsl.nix ];
+            headless = true;
+	    bootloader = false;
+          })
+
+          determinate.nixosModules.default
+        ];
+      };
     };
 }

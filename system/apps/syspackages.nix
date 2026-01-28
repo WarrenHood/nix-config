@@ -36,6 +36,6 @@ in {
 
     tmux
 
-    inputs.mcmpmgr.packages.${system}.mcmpmgr
+    # inputs.mcmpmgr.packages.${system}.mcmpmgr
   ];
 }

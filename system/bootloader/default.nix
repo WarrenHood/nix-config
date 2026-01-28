@@ -1,8 +1,14 @@
-{ ... }: {
+{ config, lib, ... }:
+with lib;
+let cfg = config;
+in
+{
   # We'll use systemd-boot for now...
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = mkIf (cfg.bootloader) {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+  };
 
   # Enable NTFS at boot
-  boot.supportedFilesystems = [ "ntfs" ];
+  boot.supportedFilesystems = mkIf (cfg.bootloader) [ "ntfs" ];
 }

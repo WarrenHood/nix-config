@@ -70,7 +70,7 @@
         bindToCwd = false;
         followCurrentFile = { enabled = true; };
       };
-      window = {
+      settings.window = {
         width = 40;
         height = 15;
         autoExpandWidth = false;
