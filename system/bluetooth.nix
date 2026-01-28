@@ -1,4 +1,9 @@
-{ pkgs, inputs, system, ... }: {
+{
+  pkgs,
+  inputs,
+  system,
+  ...
+}: {
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true; # powers up the default Bluetooth controller on boot
@@ -14,6 +19,5 @@
       };
     };
   };
-  boot.extraModprobeConfig =
-    "options bluetooth disable_ertm=1 "; # Let my controller connect
+  boot.extraModprobeConfig = "options bluetooth disable_ertm=1 "; # Let my controller connect
 }

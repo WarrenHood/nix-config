@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   # Timezone
   time.timeZone = "Africa/Johannesburg";
 

@@ -1,12 +1,10 @@
-{ ... }:
-let
+{...}: let
   defineGroup = k: desc: {
     key = k;
     action = "";
     options.desc = desc;
   };
-in
-{
+in {
   keymaps = [
     # Save and exit
     {

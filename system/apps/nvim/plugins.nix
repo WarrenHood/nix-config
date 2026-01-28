@@ -1,14 +1,14 @@
-{ ... }: {
+{...}: {
   plugins = {
     lualine.enable = true;
     web-devicons.enable = true;
 
     telescope = {
       enable = true;
-      extensions = { fzf-native = { enable = true; }; };
+      extensions = {fzf-native = {enable = true;};};
     };
 
-    nix = { enable = true; };
+    nix = {enable = true;};
 
     lsp = {
       enable = true;
@@ -16,7 +16,7 @@
         bashls.enable = true;
         nixd = {
           enable = true;
-          settings = { formatting = { command = [ "nixpkgs-fmt" ]; }; };
+          settings = {formatting = {command = ["nixpkgs-fmt"];};};
         };
         pyright.enable = true;
         rust_analyzer = {
@@ -33,26 +33,33 @@
       autoEnableSources = true;
       settings = {
         mapping = {
-          "<C-d>" = # Lua
+          "<C-d>" =
+            # Lua
             "cmp.mapping.scroll_docs(-4)";
-          "<C-f>" = # Lua
+          "<C-f>" =
+            # Lua
             "cmp.mapping.scroll_docs(4)";
-          "<C-Space>" = # Lua
+          "<C-Space>" =
+            # Lua
             "cmp.mapping.complete()";
-          "<C-e>" = # Lua
+          "<C-e>" =
+            # Lua
             "cmp.mapping.close()";
-          "<Tab>" = # Lua
+          "<Tab>" =
+            # Lua
             "cmp.mapping(cmp.mapping.select_next_item({behavior = cmp.SelectBehavior.Select}), {'i', 's'})";
-          "<S-Tab>" = # Lua
+          "<S-Tab>" =
+            # Lua
             "cmp.mapping(cmp.mapping.select_prev_item({behavior = cmp.SelectBehavior.Select}), {'i', 's'})";
-          "<CR>" = # Lua
+          "<CR>" =
+            # Lua
             "cmp.mapping.confirm({ select = false, behavior = cmp.ConfirmBehavior.Replace })";
         };
         sources = [
-          { name = "nvim_lsp"; }
-          { name = "path"; }
-          { name = "buffer"; }
-          { name = "cmdline"; }
+          {name = "nvim_lsp";}
+          {name = "path";}
+          {name = "buffer";}
+          {name = "cmdline";}
         ];
       };
     };
@@ -68,7 +75,7 @@
       popupBorderStyle = "rounded";
       buffers = {
         bindToCwd = false;
-        followCurrentFile = { enabled = true; };
+        followCurrentFile = {enabled = true;};
       };
       settings.window = {
         width = 40;
@@ -78,7 +85,7 @@
           "<space>" = "none";
           "P" = {
             command = "toggle_preview";
-            config = { use_float = true; };
+            config = {use_float = true;};
           };
         };
       };

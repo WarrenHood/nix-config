@@ -1,1 +1,1 @@
-{ ... }: { imports = [ ./forge-mtg.nix ./xmage.nix ]; }
+{...}: {imports = [./forge-mtg.nix ./xmage.nix];}

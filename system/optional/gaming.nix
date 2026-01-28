@@ -1,6 +1,10 @@
 # Common gaming stuff
-
-{ pkgs, user, inputs, ... }: {
+{
+  pkgs,
+  user,
+  inputs,
+  ...
+}: {
   imports = [
     (import ./gamemode.nix user)
     ./steam.nix
@@ -16,15 +20,13 @@
   };
 
   # Lutris
-  environment.systemPackages = with pkgs;
-    [
-      (lutris.override {
-        extraLibraries = pkgs:
-          [
-            # List library dependencies here
-          ];
-      })
-    ];
+  environment.systemPackages = with pkgs; [
+    (lutris.override {
+      extraLibraries = pkgs: [
+        # List library dependencies here
+      ];
+    })
+  ];
 
   # Enable gamescope and platform optimisations
   programs.gamescope.enable = true;
@@ -35,5 +37,5 @@
   programs.joycond-cemuhook.enable = true;
 
   hardware.uinput.enable = true;
-  services.udev.packages = [ pkgs.game-devices-udev-rules ];
+  services.udev.packages = [pkgs.game-devices-udev-rules];
 }

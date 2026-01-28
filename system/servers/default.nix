@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   imports = [
     ./vintage_story
   ];

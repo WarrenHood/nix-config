@@ -1,6 +1,10 @@
-{ lib, config, ... }:
-with lib;
-let cfg = config;
+{
+  lib,
+  config,
+  ...
+}:
+with lib; let
+  cfg = config;
 in {
   services.xserver.xkb.layout = "us";
 
@@ -12,7 +16,7 @@ in {
     enableHidpi = true;
     autoNumlock = true;
     # theme = "where_is_my_sddm_theme";
-    settings = { Theme = { CursorTheme = "breeze_cursors"; }; };
+    settings = {Theme = {CursorTheme = "breeze_cursors";};};
   };
 
   # Flatpak
@@ -21,7 +25,6 @@ in {
   # Tailscale
   services.tailscale.enable = true;
   services.tailscale.useRoutingFeatures = "client";
-
 
   # Enable pipewire service and rtkit
   security.rtkit.enable = mkIf (!cfg.headless) true;

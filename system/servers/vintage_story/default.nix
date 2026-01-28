@@ -1,7 +1,13 @@
-{ pkgs, lib, config, user, ... }: with lib;
-let
+{
+  pkgs,
+  lib,
+  config,
+  user,
+  ...
+}:
+with lib; let
   cfg = config.servers.vintage_story;
-  vs_server = (lib.callPackageWith pkgs ./package.nix { inherit cfg; });
+  vs_server = lib.callPackageWith pkgs ./package.nix {inherit cfg;};
   stop_wrapper = pkgs.writeShellScriptBin "vs-server-stop-wrapper" ''
     #!${pkgs.runtimeShell}
     # This script asks the vintage story server to stop gracefully, and waits for its screen session to end
@@ -16,8 +22,7 @@ let
 
     echo "Vintage Story Server gracefully stopped."
   '';
-in
-{
+in {
   options = {
     servers.vintage_story = {
       enable = mkEnableOption "Vintage Story Server";
@@ -51,13 +56,13 @@ in
   config = mkIf cfg.enable {
     systemd.services.vintage_story_server = {
       description = "Vintage Story Server";
-      after = [ "network-online.target" ];
-      wants = [ "network-online.target" ];
-      wantedBy = [ "default.target" ];
+      after = ["network-online.target"];
+      wants = ["network-online.target"];
+      wantedBy = ["default.target"];
       serviceConfig = {
         User = user;
         Group = "users";
-        SupplementaryGroups = [ "users" ];
+        SupplementaryGroups = ["users"];
         ExecStartPre = [
           # Ensure the data directory exists
           "${pkgs.coreutils}/bin/mkdir -p \"${cfg.dataPath}\""

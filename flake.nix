@@ -56,135 +56,133 @@
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
   };
 
-  outputs =
-    { self
-    , nixpkgs
-    , nixpkgs-stable
-    , nixpkgs-unfree
-    , nixpkgs-unstable
-    , home-manager
-    , mcmpmgr
-    , aagl
-    , auto-cpufreq
-    , determinate
-    , ...
-    }@inputs:
-    let
-      system = "x86_64-linux";
-      user = "warren";
-      pkgs = nixpkgs.legacyPackages.${system};
-      pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
-      pkgs-unfree = nixpkgs-unfree.legacyPackages.${system};
-    in
-    {
-      nixosConfigurations.dell3550 = nixpkgs.lib.nixosSystem {
+  outputs = {
+    self,
+    nixpkgs,
+    nixpkgs-stable,
+    nixpkgs-unfree,
+    nixpkgs-unstable,
+    home-manager,
+    mcmpmgr,
+    aagl,
+    auto-cpufreq,
+    determinate,
+    ...
+  } @ inputs: let
+    system = "x86_64-linux";
+    user = "warren";
+    pkgs = nixpkgs.legacyPackages.${system};
+    pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
+    pkgs-unfree = nixpkgs-unfree.legacyPackages.${system};
+  in {
+    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
+
+    nixosConfigurations.dell3550 = nixpkgs.lib.nixosSystem {
+      inherit system;
+      specialArgs = {
+        inherit inputs;
         inherit system;
-        specialArgs = {
-          inherit inputs;
-          inherit system;
-          inherit user;
-          inherit pkgs-unstable;
-          inherit nixpkgs-unstable;
-          inherit pkgs-unfree;
-        };
-        modules = [
-          ({ ... }: {
-            imports =
-              [ ./system ./system/optional/docker.nix ./hosts/dell3550.nix ];
-            headless = true;
-            servers.vintage_story = {
-              enable = true;
-              version = "1.20.12";
-              server_hash = "sha256-DqLHv9lVxXTG/qRJ2f6DFuJkB8gmHDAUiHD+d+RZpJQ=";
-            };
-          })
-
-          # home-manager.nixosModules.home-manager
-          # {
-          #   nixpkgs.config.allowUnfree = true;
-          #   home-manager.useGlobalPkgs = true;
-          #   home-manager.useUserPackages = true;
-          #   home-manager.users.${user} = import ./home;
-          #   home-manager.backupFileExtension = "backup";
-          #   home-manager.extraSpecialArgs = { inherit user; inherit pkgs-unstable; inherit pkgs-unfree; };
-          # }
-
-          auto-cpufreq.nixosModules.default
-
-          determinate.nixosModules.default
-        ];
+        inherit user;
+        inherit pkgs-unstable;
+        inherit nixpkgs-unstable;
+        inherit pkgs-unfree;
       };
-      nixosConfigurations.g14 = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit inputs;
-          inherit system;
-          inherit user;
-          inherit pkgs-unstable;
-          inherit nixpkgs-unstable;
-          inherit pkgs-unfree;
-        };
-        modules = [
-          ({ ... }: {
-            imports = [
-              ./system
-              ./hosts/g14.nix
-              ./system/optional/nvidia-g14.nix
-              ./system/optional/asus.nix
-              ./system/optional/amd.nix
-              ./system/optional/animegames.nix
-              ./system/optional/gaming.nix
-              ./system/optional/docker.nix
-              ./system/optional/waydroid.nix
-              ./system/razer
-              ./overlays
-              aagl.nixosModules.default
-            ];
-          })
+      modules = [
+        ({...}: {
+          imports = [./system ./system/optional/docker.nix ./hosts/dell3550.nix];
+          headless = true;
+          servers.vintage_story = {
+            enable = true;
+            version = "1.20.12";
+            server_hash = "sha256-DqLHv9lVxXTG/qRJ2f6DFuJkB8gmHDAUiHD+d+RZpJQ=";
+          };
+        })
 
-          home-manager.nixosModules.home-manager
-          {
-            nixpkgs.config.allowUnfree = true;
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.${user} = import ./home;
-            home-manager.backupFileExtension = "backup";
-            home-manager.extraSpecialArgs = {
-              inherit user;
-              inherit mcmpmgr;
-              inherit system;
-              inherit inputs;
-              inherit pkgs-unstable;
-              inherit pkgs-unfree;
-            };
-          }
+        # home-manager.nixosModules.home-manager
+        # {
+        #   nixpkgs.config.allowUnfree = true;
+        #   home-manager.useGlobalPkgs = true;
+        #   home-manager.useUserPackages = true;
+        #   home-manager.users.${user} = import ./home;
+        #   home-manager.backupFileExtension = "backup";
+        #   home-manager.extraSpecialArgs = { inherit user; inherit pkgs-unstable; inherit pkgs-unfree; };
+        # }
 
-          auto-cpufreq.nixosModules.default
+        auto-cpufreq.nixosModules.default
 
-          determinate.nixosModules.default
-        ];
-      };
-
-      nixosConfigurations.g14-wsl = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit inputs;
-          inherit system;
-          inherit user;
-          inherit pkgs-unstable;
-          inherit nixpkgs-unstable;
-          inherit pkgs-unfree;
-        };
-        modules = [
-          ({ ... }: {
-            imports =
-              [ ./system ./system/optional/docker.nix ./hosts/g14-wsl.nix ];
-            headless = true;
-	    bootloader = false;
-          })
-
-          determinate.nixosModules.default
-        ];
-      };
+        determinate.nixosModules.default
+      ];
     };
+    nixosConfigurations.g14 = nixpkgs.lib.nixosSystem {
+      inherit system;
+      specialArgs = {
+        inherit inputs;
+        inherit system;
+        inherit user;
+        inherit pkgs-unstable;
+        inherit nixpkgs-unstable;
+        inherit pkgs-unfree;
+      };
+      modules = [
+        ({...}: {
+          imports = [
+            ./system
+            ./hosts/g14.nix
+            ./system/optional/nvidia-g14.nix
+            ./system/optional/asus.nix
+            ./system/optional/amd.nix
+            ./system/optional/animegames.nix
+            ./system/optional/gaming.nix
+            ./system/optional/docker.nix
+            ./system/optional/waydroid.nix
+            ./system/razer
+            ./overlays
+            aagl.nixosModules.default
+          ];
+        })
+
+        home-manager.nixosModules.home-manager
+        {
+          nixpkgs.config.allowUnfree = true;
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.${user} = import ./home;
+          home-manager.backupFileExtension = "backup";
+          home-manager.extraSpecialArgs = {
+            inherit user;
+            inherit mcmpmgr;
+            inherit system;
+            inherit inputs;
+            inherit pkgs-unstable;
+            inherit pkgs-unfree;
+          };
+        }
+
+        auto-cpufreq.nixosModules.default
+
+        determinate.nixosModules.default
+      ];
+    };
+
+    nixosConfigurations.g14-wsl = nixpkgs.lib.nixosSystem {
+      inherit system;
+      specialArgs = {
+        inherit inputs;
+        inherit system;
+        inherit user;
+        inherit pkgs-unstable;
+        inherit nixpkgs-unstable;
+        inherit pkgs-unfree;
+      };
+      modules = [
+        ({...}: {
+          imports = [./system ./system/optional/docker.nix ./hosts/g14-wsl.nix];
+          headless = true;
+          bootloader = false;
+        })
+
+        determinate.nixosModules.default
+      ];
+    };
+  };
 }

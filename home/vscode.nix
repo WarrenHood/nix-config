@@ -1,11 +1,17 @@
-{ pkgs, pkgs-unfree, inputs, system, ... }: {
-
+{
+  pkgs,
+  pkgs-unfree,
+  inputs,
+  system,
+  ...
+}: {
   nixpkgs.overlays = [
     (final: prev: {
       python3 = prev.python3.override {
         packageOverrides = pfinal: pprev: {
-          debugpy = pprev.debugpy.overrideAttrs
-            (oldAttrs: { pytestCheckPhase = "true"; });
+          debugpy =
+            pprev.debugpy.overrideAttrs
+            (oldAttrs: {pytestCheckPhase = "true";});
         };
       };
       python3Packages = final.python3.pkgs;
@@ -16,33 +22,32 @@
     enable = true;
     package = pkgs-unfree.vscode;
     mutableExtensionsDir = false;
-    extensions =
-      with inputs.nix-vscode-extensions.extensions.${system}.vscode-marketplace; [
-        # Git
-        eamodio.gitlens
+    extensions = with inputs.nix-vscode-extensions.extensions.${system}.vscode-marketplace; [
+      # Git
+      eamodio.gitlens
 
-        # Theme
-        jdinhlife.gruvbox
-        pkief.material-icon-theme
+      # Theme
+      jdinhlife.gruvbox
+      pkief.material-icon-theme
 
-        # Rust
-        rust-lang.rust-analyzer
-        tamasfe.even-better-toml
+      # Rust
+      rust-lang.rust-analyzer
+      tamasfe.even-better-toml
 
-        # Python
-        ms-python.python
-        ms-pyright.pyright
-        ms-python.black-formatter
+      # Python
+      ms-python.python
+      ms-pyright.pyright
+      ms-python.black-formatter
 
-        # Nix
-        jnoortheen.nix-ide
+      # Nix
+      jnoortheen.nix-ide
 
-        # direnv for vscode. Mainly for nix shells
-        mkhl.direnv
+      # direnv for vscode. Mainly for nix shells
+      mkhl.direnv
 
-        # Lua
-        sumneko.lua
-      ];
+      # Lua
+      sumneko.lua
+    ];
     userSettings = {
       "workbench.colorTheme" = "Gruvbox Dark Medium";
       "telemetry.telemetryLevel" = "off";
@@ -51,7 +56,7 @@
       "nix.enableLanguageServer" = true;
       "nix.serverPath" = "nixd";
       "nix.serverSettings" = {
-        "nixd" = { formatting = { command = [ "nixpkgs-fmt" ]; }; };
+        "nixd" = {formatting = {command = ["nixpkgs-fmt"];};};
         # "nil" = {
         #   "diagnostics" = {
         #     "ignored" = [

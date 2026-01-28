@@ -1,11 +1,18 @@
-{ lib, pkgs, pkgs-unstable, inputs, system, ... }:
-let callUnstablePackage = lib.callPackageWith pkgs-unstable;
+{
+  lib,
+  pkgs,
+  pkgs-unstable,
+  inputs,
+  system,
+  ...
+}: let
+  callUnstablePackage = lib.callPackageWith pkgs-unstable;
 in {
   environment.systemPackages = with pkgs; [
     vim # In case neovim ever breaks
     clang # For tree-sitter in Neovim
     # neovim
-    (callUnstablePackage ./nvim { inherit inputs; })
+    (callUnstablePackage ./nvim {inherit inputs;})
     wget
     git
     htop

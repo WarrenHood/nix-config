@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   services = {
     supergfxd.enable = true;
     asusd = {

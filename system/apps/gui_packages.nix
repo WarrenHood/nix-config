@@ -1,5 +1,12 @@
 # These are packages that would be installed on a non headless system
-{ pkgs, system, inputs, config, lib, ... }: {
+{
+  pkgs,
+  system,
+  inputs,
+  config,
+  lib,
+  ...
+}: {
   environment.systemPackages = with pkgs;
     lib.mkIf (!config.headless) [
       inputs.nixpkgs-stable.legacyPackages.${system}.firefox
@@ -26,8 +33,7 @@
       # SDDM Theme
       (pkgs.where-is-my-sddm-theme.override {
         themeConfig.General = {
-          background =
-            "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+          background = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
           backgroundMode = "none";
         };
       })
