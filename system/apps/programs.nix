@@ -1,18 +1,24 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
+{ lib
+, pkgs
+, config
+, ...
 }:
 with lib; let
   cfg = config;
-in {
+in
+{
   # Enable Hyprland
   programs.hyprland.enable = mkIf (!cfg.headless) true;
   programs.hyprland.xwayland.enable = mkIf (!cfg.headless) true;
 
   # Enable KDE Plasma 6
   # services.desktopManager.plasma6.enable = true;
+
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    # Add any missing dynamic libraries for unpackaged programs
+    # here, NOT in environment.systemPackages
+  ];
 
   # Enable portals
   xdg.portal = mkIf (!cfg.headless) {
@@ -31,7 +37,7 @@ in {
     syntaxHighlighting.enable = true;
     ohMyZsh = {
       enable = true;
-      plugins = ["git" "rust" "direnv"];
+      plugins = [ "git" "rust" "direnv" ];
     };
   };
 
