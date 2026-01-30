@@ -7,6 +7,9 @@
       # here, NOT in environment.systemPackages
     ];
 
+    # I'll almost always use the starship prompt
+    programs.starship.enable = true;
+
     # Some basic packages that I will almost always use
     environment.systemPackages = with pkgs; [
       vim # In case neovim ever breaks
