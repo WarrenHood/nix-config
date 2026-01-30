@@ -4,7 +4,8 @@
   inputs = {
     # Unstable branch for now
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
     nixpkgs-unfree = {
       url = "github:numtide/nixpkgs-unfree";
@@ -15,8 +16,8 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     home-manager = {
-      # url = "github:nix-community/home-manager"; # Unstable
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager"; # Unstable
+      # url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     auto-cpufreq = {
