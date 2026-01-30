@@ -1,12 +1,12 @@
-{ lib
-, pkgs
-, config
-, ...
+{
+  lib,
+  pkgs,
+  config,
+  ...
 }:
 with lib; let
   cfg = config;
-in
-{
+in {
   # Enable Hyprland
   programs.hyprland.enable = mkIf (!cfg.headless) true;
   programs.hyprland.xwayland.enable = mkIf (!cfg.headless) true;
@@ -37,7 +37,7 @@ in
     syntaxHighlighting.enable = true;
     ohMyZsh = {
       enable = true;
-      plugins = [ "git" "rust" "direnv" ];
+      plugins = ["git" "rust" "direnv"];
     };
   };
 
