@@ -1,5 +1,5 @@
 {inputs, ...}: {
-  flake.nixosModules.useZSH = {pkgs, ...}: {
+  flake.modules.nixos.useZSH = {pkgs, ...}: {
     # Default all users to zsh
     users.defaultUserShell = pkgs.zsh;
 

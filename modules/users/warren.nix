@@ -1,5 +1,5 @@
 {inputs, ...}: {
-  flake.nixosModules.warren = {pkgs, ...}: {
+  flake.modules.nixos.warren = {pkgs, ...}: {
     users.users.warren = {
       isNormalUser = true;
       description = "Warren";

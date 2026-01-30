@@ -1,5 +1,5 @@
 {inputs, ...}: {
-  flake.nixosModules.commonPrograms = {pkgs, ...}: {
+  flake.modules.nixos.commonPrograms = {pkgs, ...}: {
     # nix-ld to allow VS Code Remote to work for example
     programs.nix-ld.enable = true;
     programs.nix-ld.libraries = with pkgs; [

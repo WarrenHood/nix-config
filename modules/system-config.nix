@@ -1,5 +1,5 @@
 {inputs, ...}: {
-  flake.nixosModules.commonSystemConfig = {
+  flake.modules.nixos.commonSystemConfig = {
     # Configs
     config = {
       # Overlays
