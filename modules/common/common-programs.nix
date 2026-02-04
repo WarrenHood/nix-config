@@ -30,7 +30,7 @@
       lshw
       p7zip
       tmux
-      self.packages.${pkgs.system}.nixvim
+      self.packages.${pkgs.stdenv.hostPlatform.system}.nixvim
     ];
   };
 }
