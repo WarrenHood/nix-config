@@ -1,0 +1,129 @@
+{
+  inputs,
+  self,
+  ...
+}: {
+  flake.nixosConfigurations.g14 = inputs.nixpkgs.lib.nixosSystem {
+    system = "x86_64-linux";
+    modules = [
+      self.modules.nixos.hyprlandBase
+      self.modules.nixos.gamingBase
+      self.modules.nixos.nvidiaBase
+      # Host specific config
+      ({
+        config,
+        lib,
+        pkgs,
+        modulesPath,
+        ...
+      }: {
+        networking.hostName = "rog-g14";
+
+        imports = [(modulesPath + "/installer/scan/not-detected.nix")];
+
+        hardware.nvidia = {
+          # Nvidia prime
+          prime = {
+            # Make sure to use the correct Bus ID values for your system!
+            # intelBusId = "PCI:0:2:0";
+            nvidiaBusId = "PCI:1:0:0";
+            amdgpuBusId = "PCI:101:0:0";
+          };
+        };
+
+        boot.initrd.availableKernelModules = [
+          "nvme"
+          "xhci_pci"
+          "thunderbolt"
+          "usbhid"
+          "usb_storage"
+          "sd_mod"
+          "rtsx_pci_sdmmc"
+        ];
+        boot.initrd.kernelModules = [];
+
+        # Use the xanmod kernel
+        # boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+
+        # Use the latest linux kernel
+        # boot.kernelPackages = pkgs.linuxPackages_latest;
+        boot.kernelPackages = let
+          nixpkgs-unfree = inputs.nixpkgs-unfree.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+        in
+          lib.mkForce nixpkgs-unfree.linuxKernel.packages.linux_xanmod_latest;
+
+        boot.kernelModules = ["kvm-amd" "hid_nintendo"];
+        boot.extraModulePackages = with config.boot.kernelPackages; [];
+        boot.kernelParams = [
+          # Disable amd pstate to stop stupid boosting my cpu temp through the roof
+          # "initcall_blacklist=amd_pstate_init"
+          # "amd_pstate.enable=0"
+
+          # Set amd pstate to guided
+          "amd_pstate=guided"
+
+          # Make Wayland and nvidia play nicely
+          "nvidia_drm.modeset=1"
+
+          # (Maybe) make bluetooth reconnections work without needing to restart bluetooth service
+          # "btusb.enable_autosuspend=n"
+          # "usbcore.autosuspend=-1"
+        ];
+
+        environment.variables = {
+          EDITOR = "nvim";
+          VISUAL = "nvim";
+          KWIN_X11_REFRESH_RATE = 144000;
+          KWIN_X11_NO_SYNC_TO_VBLANK = 1;
+          KWIN_X11_FORCE_SOFTWARE_VSYNC = 1;
+        };
+
+        fileSystems."/" = {
+          device = "/dev/disk/by-uuid/dfe5cdc6-62b7-4ef0-aa0c-e38f4b4c6b24";
+          fsType = "ext4";
+        };
+
+        # fileSystems."/games" = {
+        #   device = "/dev/disk/by-uuid/5536ab49-58e5-4de0-b017-be95b1c440f3";
+        #   fsType = "ext4";
+        #   options = [ "defaults" "users" "exec" "nofail" ];
+        # };
+
+        fileSystems."/boot" = {
+          device = "/dev/disk/by-uuid/40F1-396F";
+          fsType = "vfat";
+          options = ["fmask=0022" "dmask=0022"];
+        };
+
+        # Star citizen requirements
+        boot.kernel.sysctl = {
+          # "vm.max_map_count" = 16777216; # Already set in platformOptimisations
+          "fs.file-max" = 524288;
+        };
+        # See RAM, ZRAM & Swap
+        swapDevices = [
+          {
+            device = "/var/lib/swapfile";
+            size = 8 * 1024; # 8 GB Swap
+          }
+        ];
+
+        zramSwap = {
+          enable = true;
+          memoryMax = 16 * 1024 * 1024 * 1024; # 16 GB ZRAM
+        };
+
+        # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
+        # (the default) this is the recommended approach. When using systemd-networkd it's
+        # still possible to use this option, but it's recommended to use it in conjunction
+        # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
+        networking.useDHCP = lib.mkDefault true;
+        # networking.interfaces.wlp2s0.useDHCP = lib.mkDefault true;
+
+        nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+        hardware.cpu.amd.updateMicrocode =
+          lib.mkDefault config.hardware.enableRedistributableFirmware;
+      })
+    ];
+  };
+}
