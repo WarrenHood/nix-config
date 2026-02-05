@@ -1,9 +1,13 @@
 # Base hyprland module
-{self, ...}: {
-  flake.modules.nixos.hyprlandBase = {pkgs, ...}: {
+{ self, ... }: {
+  flake.modules.nixos.hyprlandBase = { pkgs, ... }: {
     imports = [
       self.modules.nixos.minimalGraphicalBase
     ];
+
+    # Actually enable hyprland  
+    programs.hyprland.enable = true;
+    programs.hyprland.xwayland.enable = true;
 
     # Enable portals
     xdg.portal = {
