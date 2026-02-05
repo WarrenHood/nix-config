@@ -14,7 +14,8 @@
       noto-fonts
 
       # Nerd fonts for nixos-unstable
-      nerd-fonts.mononoki nerd-fonts.jetbrains-mono
+      nerd-fonts.mononoki
+      nerd-fonts.jetbrains-mono
     ];
 
     services.xserver.xkb.layout = "us";

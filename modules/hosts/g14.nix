@@ -9,6 +9,204 @@
       self.modules.nixos.hyprlandBase
       self.modules.nixos.gamingBase
       self.modules.nixos.nvidiaBase
+
+      inputs.home-manager.nixosModules.home-manager
+      {
+        nixpkgs.config.allowUnfree = true;
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.users.warren = {pkgs, ...}: {
+          # TODO: I shouldn't hardcode my username
+          home.username = "warren";
+          home.homeDirectory = "/home/warren";
+
+          programs.direnv = {
+            enable = true;
+            enableBashIntegration = true;
+            enableZshIntegration = true;
+            enableFishIntegration = true;
+            nix-direnv.enable = true; # Faster
+          };
+
+          programs.vscode = {
+            enable = true;
+            package = pkgs.vscode;
+            mutableExtensionsDir = false;
+            extensions = with inputs.nix-vscode-extensions.extensions.${pkgs.stdenv.hostPlatform.system}.vscode-marketplace; [
+              # Git
+              eamodio.gitlens
+
+              # Theme
+              jdinhlife.gruvbox
+              pkief.material-icon-theme
+
+              # Rust
+              rust-lang.rust-analyzer
+              tamasfe.even-better-toml
+
+              # Python
+              ms-python.python
+              ms-pyright.pyright
+              ms-python.black-formatter
+
+              # Nix
+              jnoortheen.nix-ide
+
+              # direnv for vscode. Mainly for nix shells
+              mkhl.direnv
+
+              # Lua
+              sumneko.lua
+            ];
+            userSettings = {
+              "workbench.colorTheme" = "Gruvbox Dark Medium";
+              "telemetry.telemetryLevel" = "off";
+              "python.languageServer" = "None";
+              "editor.formatOnSave" = true;
+              "nix.enableLanguageServer" = true;
+              "nix.serverPath" = "nixd";
+              "nix.serverSettings" = {
+                "nixd" = {formatting = {command = ["nixpkgs-fmt"];};};
+                # "nil" = {
+                #   "diagnostics" = {
+                #     "ignored" = [
+                #       "unused_binding"
+                #       "unused_with"
+                #     ];
+                #   };
+                #   "formatting" = {
+                #     "command" = [
+                #       "nixpkgs-fmt"
+                #     ];
+                #   };
+                # };
+              };
+              "workbench.startupEditor" = "none";
+              "editor.fontLigatures" = true;
+              "editor.fontFamily" = "'JetBrainsMono Nerd Font'";
+              "rust-analyzer.server.path" = "rust-analyzer";
+            };
+          };
+          # Packages that should be installed to the user profile.
+          home.packages = with pkgs; [
+            vesktop
+            nixd
+            neofetch
+            tmux
+
+            # archives
+            zip
+            xz
+            unzip
+            p7zip
+
+            # utils
+            ripgrep # recursively searches directories for a regex pattern
+            jq # A lightweight and flexible command-line JSON processor
+            eza # A modern replacement for ‘ls’
+            fzf # A command-line fuzzy finder
+            mission-center # A nice task-manager like thing
+
+            # modrinth-app # Modrinth app for minecraft
+            # prismlauncher # Prism launcher for when modrinth is broken
+            # zulu21 # java 21
+
+            # Thermals and performance
+            s-tui # stres test tui
+            stress # stress testing
+
+            # My minecraft package manager
+            # mcmpmgr.packages.${system}.mcmpmgr
+
+            # stremio
+            polychromatic
+
+            ## Games and launchers
+            # heroic # Epic games
+            # osu-lazer-bin
+
+            # MTG things
+            # cockatrice
+            # forge-mtg
+            # xmage
+
+            # Godot
+            # godot_4
+
+            # Blender
+            # blender
+
+            # Pipewire easyeffects
+            easyeffects
+
+            # Reading
+            # calibre
+
+            # Torrenting
+            # qbittorrent
+
+            # Free Open Source YT client
+            # freetube
+
+            # Nexus mods app
+            # nexusmods-app-unfree
+
+            # Final Fantasy 14 Launcher
+            # xivlauncher
+
+            # Vintage story
+            # pkgs-unfree.vintagestory
+          ];
+
+          gtk = {
+            enable = true;
+            # theme = {
+            #   name = "Breeze-Dark";
+            #   # package = pkgs.libsForQt5.breeze-gtk;
+            # };
+            # iconTheme = {
+            #   name = "breeze-dark";
+            #   # package = pkgs.libsForQt5.breeze-icons;
+            # };
+            # cursorTheme = {
+            #   name = "breeze_cursors";
+            #   # package = pkgs.libsForQt5.breeze-icons;
+            # };
+            gtk3 = {extraConfig.gtk-application-prefer-dark-theme = true;};
+          };
+
+          # home.pointerCursor = {
+          #   gtk.enable = true;
+          #   name = "breeze_cursors";
+          #   package = pkgs.libsForQt5.breeze-icons;
+          #   size = 16;
+          # };
+
+          dconf.settings = {
+            "org/gnome/desktop/interface" = {
+              gtk-theme = "Breeze-Dark";
+              color-scheme = "prefer-dark";
+            };
+          };
+
+          # Bluetooth applet
+          # TODO: Re-enable when switching back to Hyprland
+          # services.blueman-applet.enable = true;
+
+          home.stateVersion = "23.11";
+          programs.home-manager.enable = true;
+        };
+        home-manager.backupFileExtension = "backup";
+        # home-manager.extraSpecialArgs = {
+        #   inherit user;
+        #   inherit mcmpmgr;
+        #   inherit system;
+        #   inherit inputs;
+        #   inherit pkgs-unstable;
+        #   inherit pkgs-unfree;
+        # };
+      }
+
       # Host specific config
       ({
         config,
