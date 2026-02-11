@@ -26,7 +26,20 @@
     ];
 
     programs.niri.package = pkgs.niri;
-    programs.fuzzel.enable = true;
+    programs.fuzzel = {
+      enable = true;
+      settings = {
+        colors = {
+          background = "161616ff";
+          text = "ffffffff";
+          match = "ee5396ff";
+          selection-match = "ee5396ff";
+          selection = "262626ff";
+          selection-text = "33b1ffff";
+          border = "525252ff";
+        };
+      };
+    };
     programs.niri.config = builtins.readFile "${self}/dotfiles/niri/config.kdl";
 
     # Enable noctalia shell
