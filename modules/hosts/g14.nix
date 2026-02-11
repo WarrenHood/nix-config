@@ -8,6 +8,8 @@
     modules = [
       # DE/Compositor
       self.modules.nixos.minimalGraphicalBase
+      self.modules.nixos.niri
+
       # self.modules.nixos.hyprlandBase
 
       self.modules.nixos.gamingBase
@@ -15,25 +17,6 @@
 
       # Home manager NixOS module
       inputs.home-manager.nixosModules.home-manager
-
-      # Stylix module
-      # inputs.stylix.nixosModules.stylix
-
-      # Niri NixOS module
-      inputs.niri.nixosModules.niri
-
-      # Enable niri
-      ({pkgs, ...}: {
-        programs.niri.enable = true;
-
-        environment.systemPackages = with pkgs; [
-          xwayland-satellite
-        ];
-
-        environment.variables = {
-          NIXOS_OZONE_WL = "1";
-        };
-      })
 
       # Home manager configuration
       {
@@ -45,39 +28,8 @@
             warren
             codingBase
             gamingBase
-
-            # Noctalia shell home manager module
-            inputs.noctalia.homeModules.default
-
-            # Niri home-manager module
-            # Currently disabled since just the NixOS module is needed
-            # inputs.niri.homeModules.niri
-
-            (
-              {pkgs, ...}: {
-                # Enable niri
-                # programs.niri.enable = true;
-                programs.niri.package = pkgs.niri;
-                programs.fuzzel.enable = true;
-                programs.niri.config = builtins.readFile "${self}/dotfiles/niri/config.kdl";
-
-                # Configure niri
-                # programs.niri.settings = {
-                #   spawn-at-startup = [
-                #     {
-                #       command = [
-                #         "noctalia-shell"
-                #       ];
-                #     }
-                #   ];
-                # };
-              }
-            )
+            niriConfig
           ];
-
-          programs.noctalia-shell = {
-            enable = true;
-          };
         };
       }
 
