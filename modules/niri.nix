@@ -50,6 +50,15 @@
         default = ["gnome"];
       };
     };
+
+    # Use the breeze cursor theme
+    home.pointerCursor = {
+      package = pkgs.kdePackages.breeze;
+      name = "breeze_cursors";
+      size = 24;
+      gtk.enable = true;
+      x11.enable = true;
+    };
   };
 
   flake.modules.homeManager.niriStandalone = {pkgs, ...}: {
