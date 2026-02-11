@@ -8,6 +8,10 @@
       inputs.niri.nixosModules.niri
     ];
 
+    # Use niri-unstable since niri-stable is kinda behind
+    nixpkgs.overlays = [inputs.niri.overlays.niri];
+    programs.niri.package = pkgs.niri-unstable;
+
     programs.niri.enable = true;
 
     environment.systemPackages = with pkgs; [
@@ -25,7 +29,11 @@
       inputs.noctalia.homeModules.default
     ];
 
-    programs.niri.package = pkgs.niri;
+    # programs.niri.package = pkgs.niri;
+    # Use niri-unstable since niri-stable is kinda behind
+    nixpkgs.overlays = [inputs.niri.overlays.niri];
+    programs.niri.package = pkgs.niri-unstable;
+
     programs.fuzzel = {
       enable = true;
       settings = {
@@ -40,6 +48,8 @@
         };
       };
     };
+
+    # TODO: Migrate over to programs.niri.settings at some point
     programs.niri.config = builtins.readFile "${self}/dotfiles/niri/config.kdl";
 
     # Enable noctalia shell
