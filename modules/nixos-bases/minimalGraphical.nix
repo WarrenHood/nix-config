@@ -20,6 +20,13 @@
 
     services.xserver.xkb.layout = "us";
 
+    # Flatpak
+    services.flatpak.enable = true;
+
+    # Enable xdg portal for flatpak
+    xdg.portal.enable = true;
+    xdg.portal.config.common.default = "*";
+
     # xserver and sddm
     services.xserver.enable = true;
     services.displayManager.sddm = {

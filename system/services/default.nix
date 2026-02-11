@@ -19,9 +19,6 @@ in {
     settings = {Theme = {CursorTheme = "breeze_cursors";};};
   };
 
-  # Flatpak
-  services.flatpak.enable = mkIf (!cfg.headless) true;
-
   # Tailscale
   services.tailscale.enable = true;
   services.tailscale.useRoutingFeatures = "client";

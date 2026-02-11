@@ -6,16 +6,31 @@
   flake.nixosConfigurations.g14 = inputs.nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     modules = [
-      self.modules.nixos.hyprlandBase
+      # DE/Compositor
+      self.modules.nixos.minimalGraphicalBase
+      # self.modules.nixos.hyprlandBase
+
       self.modules.nixos.gamingBase
       self.modules.nixos.nvidiaBase
 
       # Home manager NixOS module
       inputs.home-manager.nixosModules.home-manager
 
+      # Stylix module
+      # inputs.stylix.nixosModules.stylix
+
+      # Niri NixOS module
+      inputs.niri.nixosModules.niri
+
+      # Enable stylix and niri
+      ({pkgs, ...}: {
+        programs.niri.enable = true;
+        # stylix.enable = true;
+        # stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
+      })
+
       # Home manager configuration
       {
-        nixpkgs.config.allowUnfree = true;
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.backupFileExtension = "backup";
@@ -24,7 +39,39 @@
             warren
             codingBase
             gamingBase
+
+            # Noctalia shell home manager module
+            inputs.noctalia.homeModules.default
+
+            # Niri home-manager module
+            # Currently disabled since just the NixOS module is needed
+            # inputs.niri.homeModules.niri
+
+            (
+              {pkgs, ...}: {
+                # Enable niri
+                # programs.niri.enable = true;
+                programs.niri.package = pkgs.niri;
+                programs.fuzzel.enable = true;
+                programs.niri.config = builtins.readFile "${self}/dotfiles/niri/config.kdl";
+
+                # Configure niri
+                # programs.niri.settings = {
+                #   spawn-at-startup = [
+                #     {
+                #       command = [
+                #         "noctalia-shell"
+                #       ];
+                #     }
+                #   ];
+                # };
+              }
+            )
           ];
+
+          programs.noctalia-shell = {
+            enable = true;
+          };
         };
       }
 
