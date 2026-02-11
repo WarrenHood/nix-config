@@ -33,14 +33,6 @@
     programs.noctalia-shell = {
       enable = true;
     };
-  };
-
-  flake.modules.homeManager.niriStandalone = {pkgs, ...}: {
-    imports = with self.modules.homeManager; [
-      # Standalone niri home-manager module
-      inputs.niri.homeModules.niri
-      niriConfig
-    ];
 
     home.sessionVariables = {
       NIXOS_OZONE_WL = "1";
@@ -48,6 +40,23 @@
 
     home.packages = with pkgs; [
       xwayland-satellite
+    ];
+
+    # Enable gnome xdg portals for screensharing on Wayland (discord etc)
+    xdg.portal.enable = true;
+    xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gnome];
+    xdg.portal.config = {
+      common = {
+        default = ["gnome"];
+      };
+    };
+  };
+
+  flake.modules.homeManager.niriStandalone = {pkgs, ...}: {
+    imports = with self.modules.homeManager; [
+      # Standalone niri home-manager module
+      inputs.niri.homeModules.niri
+      niriConfig
     ];
 
     # Enable niri
