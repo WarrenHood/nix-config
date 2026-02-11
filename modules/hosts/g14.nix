@@ -22,11 +22,13 @@
       # Niri NixOS module
       inputs.niri.nixosModules.niri
 
-      # Enable stylix and niri
+      # Enable niri
       ({pkgs, ...}: {
         programs.niri.enable = true;
-        # stylix.enable = true;
-        # stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
+
+        environment.variables = {
+          NIXOS_OZONE_WL = "1";
+        };
       })
 
       # Home manager configuration
