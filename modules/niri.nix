@@ -9,8 +9,7 @@
     ];
 
     # Use niri-unstable since niri-stable is kinda behind
-    nixpkgs.overlays = [inputs.niri.overlays.niri];
-    programs.niri.package = pkgs.niri-unstable;
+    programs.niri.package = inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.niri-unstable;
 
     programs.niri.enable = true;
 
@@ -31,8 +30,7 @@
 
     # programs.niri.package = pkgs.niri;
     # Use niri-unstable since niri-stable is kinda behind
-    nixpkgs.overlays = [inputs.niri.overlays.niri];
-    programs.niri.package = pkgs.niri-unstable;
+    programs.niri.package = inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.niri-unstable;
 
     programs.fuzzel = {
       enable = true;
