@@ -12,7 +12,7 @@
       enable = true;
       package = pkgs.vscode;
       mutableExtensionsDir = false;
-      extensions = with inputs.nix-vscode-extensions.extensions.${pkgs.stdenv.hostPlatform.system}.vscode-marketplace; [
+      profiles.default.extensions = with inputs.nix-vscode-extensions.extensions.${pkgs.stdenv.hostPlatform.system}.vscode-marketplace; [
         # Git
         eamodio.gitlens
 
@@ -38,7 +38,7 @@
         # Lua
         sumneko.lua
       ];
-      userSettings = {
+      profiles.default.userSettings = {
         "workbench.colorTheme" = "Gruvbox Dark Medium";
         "telemetry.telemetryLevel" = "off";
         "python.languageServer" = "None";
