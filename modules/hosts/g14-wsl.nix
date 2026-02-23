@@ -18,6 +18,23 @@
         wsl.enable = true;
         wsl.defaultUser = "warren";
       }
+
+      # Home manager NixOS module
+      inputs.home-manager.nixosModules.home-manager
+
+      # Home manager configuration
+      {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        environment.pathsToLink = ["/share/applications" "/share/xdg-desktop-portal"];
+        home-manager.backupFileExtension = "backup";
+        home-manager.users.warren = {
+          imports = with self.modules.homeManager; [
+            minimalBase
+            warren
+          ];
+        };
+      }
     ];
   };
 }
