@@ -5,7 +5,11 @@
       inputs.noctalia.homeModules.default
     ];
 
-    # TODO: Spawn noctalia at startup in niri config once I migrate it from kdl
+    programs.niri.settings = {
+      spawn-at-startup = [
+        {argv = ["noctalia-shell"];}
+      ];
+    };
 
     # Enable noctalia shell
     programs.noctalia-shell = {
