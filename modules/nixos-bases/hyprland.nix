@@ -1,8 +1,8 @@
 # Base hyprland module
 {self, ...}: {
-  flake.modules.nixos.hyprlandBase = {pkgs, ...}: {
-    imports = [
-      self.modules.nixos.minimalGraphicalBase
+  flake.modules.nixos.hyprland = {pkgs, ...}: {
+    imports = with self.modules.nixos; [
+      waylandBase
     ];
 
     # Actually enable hyprland

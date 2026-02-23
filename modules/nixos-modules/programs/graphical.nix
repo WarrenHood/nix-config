@@ -5,7 +5,7 @@
 
     # Some basic packages that I will almost always use
     environment.systemPackages = with pkgs; [
-      inputs.nixpkgs-stable.legacyPackages.${system}.firefox
+      inputs.nixpkgs-stable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.firefox
       alacritty
       font-awesome
       polychromatic

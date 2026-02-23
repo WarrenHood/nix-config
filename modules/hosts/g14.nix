@@ -5,13 +5,15 @@
 }: {
   flake.nixosConfigurations.g14 = inputs.nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
-    modules = [
+    modules = with self.modules.nixos; [
+      # This is a graphical system
+      minimalGraphicalBase
+
       # DE/Compositor
-      self.modules.nixos.minimalGraphicalBase
-      self.modules.nixos.niri
+      niri
+      # hyprland
 
-      # self.modules.nixos.hyprlandBase
-
+      # I game on here with nvidia graphics
       self.modules.nixos.gamingBase
       self.modules.nixos.nvidiaBase
 
@@ -29,6 +31,7 @@
             codingBase
             gamingBase
             niriConfig
+            noctaliaShell
           ];
         };
       }
