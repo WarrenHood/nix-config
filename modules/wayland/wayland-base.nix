@@ -29,6 +29,15 @@
       wl-clipboard # Wayland clipboard
     ];
 
+    # Swaylock with a gray background
+    programs.swaylock = {
+      enable = true;
+      settings = {
+        color = "111111";
+        show-failed-attempts = true;
+      };
+    };
+
     # Flameshot
     # TODO: Flameshot is broken in niri for me... Figure out how to get it working nicely
     # services.flameshot = {
