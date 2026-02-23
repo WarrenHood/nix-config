@@ -3,7 +3,11 @@
   self,
   ...
 }: {
-  flake.modules.nixos.niri = {lib, pkgs, ...}: {
+  flake.modules.nixos.niri = {
+    lib,
+    pkgs,
+    ...
+  }: {
     imports = with self.modules.nixos; [
       waylandBase
       inputs.niri.nixosModules.niri
@@ -36,6 +40,9 @@
     programs.niri.package = inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.niri-unstable;
 
     programs.niri.settings = {
+      # Prefer no client side decorations
+      prefer-no-csd = true;
+      # Keybinds
       binds = {
         # shows a list of important hotkeys.
         "Mod+Shift+Slash".action.show-hotkey-overlay = {};
