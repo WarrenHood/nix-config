@@ -10,6 +10,11 @@
   }: {
     gtk = {
       enable = true;
+
+      colorScheme = "dark";
+      gtk3.colorScheme = "dark";
+      gtk4.colorScheme = "dark";
+
       # theme = {
       #   name = "Breeze-Dark";
       #   # package = pkgs.libsForQt5.breeze-gtk;
@@ -22,7 +27,7 @@
       #   name = "breeze_cursors";
       #   # package = pkgs.libsForQt5.breeze-icons;
       # };
-      gtk3 = {extraConfig.gtk-application-prefer-dark-theme = true;};
+      gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
     };
 
     # home.pointerCursor = {
