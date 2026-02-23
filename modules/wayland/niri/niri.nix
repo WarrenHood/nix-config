@@ -3,7 +3,7 @@
   self,
   ...
 }: {
-  flake.modules.nixos.niri = {pkgs, ...}: {
+  flake.modules.nixos.niri = {lib, pkgs, ...}: {
     imports = with self.modules.nixos; [
       waylandBase
       inputs.niri.nixosModules.niri
@@ -13,6 +13,14 @@
     programs.niri.package = inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.niri-unstable;
 
     programs.niri.enable = true;
+
+    xdg.portal.enable = true;
+    xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gnome];
+    xdg.portal.config = {
+      common = {
+        default = lib.mkForce ["gnome"];
+      };
+    };
 
     # TODO: Is xwayland-satellite included by default when niri is enabled?
     environment.systemPackages = with pkgs; [
@@ -218,7 +226,6 @@
 
         # Screenshot region with annotation using grim + slurp + satty
         "Mod+Shift+S".action.spawn-sh = ''grim -g "$(slurp)" - | satty --filename - --copy-command "wl-copy"'';
-
 
         # An escape hatch in case something like a remote desktop window or VM windows doesn't want to give up focus
         "Mod+Escape" = {
