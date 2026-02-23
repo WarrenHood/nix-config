@@ -22,6 +22,26 @@
       };
     };
 
+    home.packages = with pkgs; [
+      grim # Screenshots
+      slurp # Select rects
+      satty # Annotations of screenshots
+      wl-clipboard # Wayland clipboard
+    ];
+
+    # Flameshot
+    # TODO: Flameshot is broken in niri for me... Figure out how to get it working nicely
+    # services.flameshot = {
+    #   enable = true;
+    #   settings = {
+    #     # See flameshot example settings at https://github.com/flameshot-org/flameshot/blob/master/flameshot.example.ini
+    #     General = {
+    #       showDesktopNotification = true;
+    #       useGrimAdapter = true;
+    #     };
+    #   };
+    # };
+
     home.sessionVariables = {
       # Ask chromium based apps to run natively on Wayland
       NIXOS_OZONE_WL = "1";

@@ -216,6 +216,10 @@
         "Ctrl+Print".action.screenshot-screen = {};
         "Alt+Print".action = {"screenshot-window" = {};};
 
+        # Screenshot region with annotation using grim + slurp + satty
+        "Mod+Shift+S".action.spawn-sh = ''grim -g "$(slurp)" - | satty --filename - --copy-command "wl-copy"'';
+
+
         # An escape hatch in case something like a remote desktop window or VM windows doesn't want to give up focus
         "Mod+Escape" = {
           allow-inhibiting = false;
