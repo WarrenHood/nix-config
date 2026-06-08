@@ -17,6 +17,9 @@
       efi.canTouchEfiVariables = true;
     };
 
+    # Use the newer dbus-broker implementation
+    services.dbus.implementation = "broker";
+
     # Enable NTFS at boot
     boot.supportedFilesystems = ["ntfs"];
 
