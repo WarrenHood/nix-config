@@ -13,6 +13,7 @@
     # We'll use systemd-boot for now...
     boot.loader = {
       systemd-boot.enable = true;
+      systemd-boot.configurationLimit = 5;
       efi.canTouchEfiVariables = true;
     };
 
