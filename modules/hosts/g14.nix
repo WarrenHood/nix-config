@@ -74,10 +74,14 @@
 
         # Use the latest linux kernel
         # boot.kernelPackages = pkgs.linuxPackages_latest;
-        boot.kernelPackages = let
-          nixpkgs-unfree = inputs.nixpkgs-unfree.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-        in
-          lib.mkForce nixpkgs-unfree.linuxKernel.packages.linux_xanmod_latest;
+        
+        boot.kernelPackages = pkgs.linuxPackages_zen;
+
+        
+        # boot.kernelPackages = let
+        #   nixpkgs-unfree = inputs.nixpkgs-unfree.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+        # in
+        #   lib.mkForce nixpkgs-unfree.linuxKernel.packages.linux_xanmod_latest;
 
         boot.kernelModules = ["kvm-amd" "hid_nintendo"];
         boot.extraModulePackages = with config.boot.kernelPackages; [];

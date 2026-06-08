@@ -24,7 +24,7 @@
       ncdu
       stow
       gnumake
-      neofetch
+      fastfetch
       fd
       ripgrep
       lshw

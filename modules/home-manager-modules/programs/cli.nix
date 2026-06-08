@@ -10,7 +10,7 @@
   }: {
     home.packages = with pkgs; [
       nixd
-      neofetch
+      fastfetch
       tmux
 
       # archives
