@@ -48,6 +48,8 @@
           # List library dependencies here
         ];
       })
+      protonup-qt
+      protonplus
     ];
 
     # Enable gamescope and platform optimisations
