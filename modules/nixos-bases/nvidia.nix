@@ -1,27 +1,13 @@
-{self, ...}: {
-  flake.modules.nixos.nvidiaBase = {config, ...}: {
-    imports = [];
+{ self, ... }: {
+  flake.modules.nixos.nvidiaBase = { config, ... }: {
+    imports = [ ];
 
-    hardware.graphics = {enable = true;};
+    hardware.graphics = { enable = true; };
 
     # Load nvidia driver for Xorg and Wayland
-    services.xserver.videoDrivers = ["nvidia"];
+    services.xserver.videoDrivers = [ "nvidia" ];
 
     hardware.nvidia = {
-      # Nvidia prime
-      prime = {
-        # Make sure to use the correct Bus ID values for your system!
-        # intelBusId = "PCI:0:2:0";
-        nvidiaBusId = "PCI:1:0:0";
-        amdgpuBusId = "PCI:101:0:0";
-
-        # Enable prime offload and nvidia-offload
-        offload = {
-          enable = true;
-          enableOffloadCmd = true;
-        };
-      };
-
       # Modesetting is required.
       modesetting.enable = true;
 
@@ -42,7 +28,7 @@
       # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
       # Only available from driver 515.43.04+
       # Currently alpha-quality/buggy, so false is currently the recommended setting.
-      open = false;
+      open = true;
 
       # Enable the Nvidia settings menu,
       # accessible via `nvidia-settings`.
