@@ -27,7 +27,10 @@
       };
     };
 
-    programs.steam = {enable = true;};
+    programs.steam = {
+      enable = true;
+      localNetworkGameTransfers.openFirewall = true; 
+    };
 
     # Controller support
     hardware.steam-hardware.enable = true;
