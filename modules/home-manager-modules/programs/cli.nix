@@ -30,7 +30,7 @@
       stress # stress testing
 
       # My minecraft package manager
-      # mcmpmgr.packages.${system}.mcmpmgr
+      inputs.mcmpmgr.packages.${system}.mcmpmgr
     ];
   };
 }

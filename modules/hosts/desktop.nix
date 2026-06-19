@@ -35,6 +35,7 @@
             ({pkgs, ...}: {
               home.packages = with pkgs; [
                 osu-lazer-bin
+                prismlauncher
               ];
             })
 
@@ -53,6 +54,11 @@
 
           # Use KDE Plasma 6
           services.desktopManager.plasma6.enable = true;
+
+          # Temurin JRE
+          environment.systemPackages = with pkgs; [
+            temurin-jre-bin
+          ];
 
           imports =
             [
