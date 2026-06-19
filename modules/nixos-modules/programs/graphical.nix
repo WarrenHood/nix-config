@@ -1,5 +1,5 @@
-{inputs, ...}: {
-  flake.modules.nixos.graphicalPrograms = {pkgs, ...}: {
+{ inputs, ... }: {
+  flake.modules.nixos.graphicalPrograms = { pkgs, ... }: {
     # I'll almost always use the starship prompt
     programs.starship.enable = true;
 
@@ -21,6 +21,10 @@
 
       # Steam controller
       sc-controller
+
+      stremio-linux-shell
+
+      vlc
     ];
   };
 }
