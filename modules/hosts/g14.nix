@@ -10,7 +10,7 @@
       minimalGraphicalBase
 
       # DE/Compositor
-      niri
+      # niri
       # hyprland
 
       # I game on here with nvidia graphics
@@ -30,8 +30,8 @@
             warren
             codingBase
             gamingBase
-            niriConfig
-            noctaliaShell
+            # niriConfig
+            # noctaliaShell
           ];
         };
       }
@@ -45,6 +45,8 @@
         ...
       }: {
         networking.hostName = "rog-g14";
+
+        services.desktopManager.plasma6.enable = true;
 
         imports = [(modulesPath + "/installer/scan/not-detected.nix")];
 
