@@ -38,21 +38,21 @@
 
     # Bluetooth
     services.blueman.enable = true;
+
+    hardware.enableRedistributableFirmware = true; 
+
     hardware.bluetooth = {
       enable = true;
-      powerOnBoot = true; # powers up the default Bluetooth controller on boot
-      package = inputs.nixpkgs-stable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.bluez;
+      powerOnBoot = true;
       settings = {
-        Policy.AutoEnable = "true";
         General = {
           Enable = "Source,Sink,Media,Socket";
-          ControllerMode = "bredr";
+          ControllerMode = "dual";
           FastConnectable = "true";
           Experimental = "true";
           KernelExperimental = "true";
         };
       };
     };
-    boot.extraModprobeConfig = "options bluetooth disable_ertm=1 "; # Let my controller connect
   };
 }
