@@ -50,8 +50,11 @@
           networking.hostName = "nixos-pc";
 
           # Zen kernel
-          boot.kernelPackages = pkgs.linuxPackages_zen;
-
+          # boot.kernelPackages = pkgs.linuxPackages_zen;
+          boot.kernelPackages = let
+            nixpkgs-unfree = inputs.nixpkgs-unfree.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+          in
+            lib.mkForce nixpkgs-unfree.linuxKernel.packages.linux_xanmod_latest;
           # Use KDE Plasma 6
           services.desktopManager.plasma6.enable = true;
 
