@@ -36,12 +36,20 @@
               home.packages = with pkgs; [
                 osu-lazer-bin
                 prismlauncher
+                krita
               ];
             })
 
           ];
         };
       }
+
+      # Pen tablet config
+      ({...}: {
+          hardware.opentabletdriver.enable = true;
+          hardware.uinput.enable = true;
+          boot.kernelModules = [ "uinput" ];
+      })
 
       # Host specific config
       ({ config, lib, pkgs, modulesPath, ... }:
