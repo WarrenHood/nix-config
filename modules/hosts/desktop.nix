@@ -63,8 +63,11 @@
             nixpkgs-unfree = inputs.nixpkgs-unfree.legacyPackages.${pkgs.stdenv.hostPlatform.system};
           in
             lib.mkForce nixpkgs-unfree.linuxKernel.packages.linux_xanmod_latest;
+
           # Use KDE Plasma 6
           services.desktopManager.plasma6.enable = true;
+          # Blueman is really not needed with KDE Plasma
+          services.blueman.enable = lib.mkForce false;
 
           # Temurin JRE
           environment.systemPackages = with pkgs; [
