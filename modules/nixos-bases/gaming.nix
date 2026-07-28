@@ -1,6 +1,6 @@
 # Gaming base
-{inputs, ...}: {
-  flake.modules.nixos.gamingBase = {pkgs, ...}: {
+{ inputs, ... }: {
+  flake.modules.nixos.gamingBase = { pkgs, ... }: {
     imports = [
       inputs.nix-gaming.nixosModules.platformOptimizations
       inputs.nix-gaming.nixosModules.pipewireLowLatency
@@ -29,7 +29,7 @@
 
     programs.steam = {
       enable = true;
-      localNetworkGameTransfers.openFirewall = true; 
+      localNetworkGameTransfers.openFirewall = true;
     };
 
     # Controller support
@@ -61,20 +61,26 @@
     programs.joycond-cemuhook.enable = true;
 
     hardware.uinput.enable = true;
-    services.udev.packages = [pkgs.game-devices-udev-rules];
+    services.udev.packages = [ pkgs.game-devices-udev-rules ];
 
     # Gamemode
     programs.gamemode.enable = true;
     programs.gamemode.settings = {
       cpu = {
-        park_cores  = "no";
+        park_cores = "no";
         pin_cores = "yes";
-        amd_x3d_mode_desired = "cache"; 
+        amd_x3d_mode_desired = "cache";
         amd_x3d_mode_default = "frequency";
       };
     };
 
     # TODO: Fix. This is a hack but my username will always be warren
-    users.users.warren.extraGroups = ["gamemode"];
+    users.users.warren.extraGroups = [ "gamemode" ];
+
+    # BBR + FQ - better network performance
+    boot.kernel.sysctl = {
+      "net.core.default_qdisc" = "fq";
+      "net.ipv4.tcp_congestion_control" = "bbr";
+    };
   };
 }
