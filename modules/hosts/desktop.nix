@@ -32,7 +32,7 @@
             # niriConfig
             # noctaliaShell
 
-            ({pkgs, ...}: {
+            ({ pkgs, ... }: {
               home.packages = with pkgs; [
                 osu-lazer-bin
                 prismlauncher
@@ -45,10 +45,10 @@
       }
 
       # Pen tablet config
-      ({...}: {
-          hardware.opentabletdriver.enable = true;
-          hardware.uinput.enable = true;
-          boot.kernelModules = [ "uinput" ];
+      ({ ... }: {
+        hardware.opentabletdriver.enable = true;
+        hardware.uinput.enable = true;
+        boot.kernelModules = [ "uinput" ];
       })
 
       # Host specific config
@@ -59,9 +59,10 @@
 
           # Zen kernel
           # boot.kernelPackages = pkgs.linuxPackages_zen;
-          boot.kernelPackages = let
-            nixpkgs-unfree = inputs.nixpkgs-unfree.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-          in
+          boot.kernelPackages =
+            let
+              nixpkgs-unfree = inputs.nixpkgs-unfree.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+            in
             lib.mkForce nixpkgs-unfree.linuxKernel.packages.linux_xanmod_latest;
 
           # Use KDE Plasma 6
@@ -72,6 +73,7 @@
           # Temurin JRE
           environment.systemPackages = with pkgs; [
             temurin-jre-bin
+            cataclysm-dda
           ];
 
           imports =
