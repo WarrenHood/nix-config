@@ -30,6 +30,12 @@
     programs.steam = {
       enable = true;
       localNetworkGameTransfers.openFirewall = true;
+      package = pkgs.steam.override {
+        extraEnv = {
+          # Run all proton games under wayland
+          PROTON_ENABLE_WAYLAND = "1";
+        };
+      };
     };
 
     # Controller support
