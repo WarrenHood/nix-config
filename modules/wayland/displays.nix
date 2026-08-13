@@ -1,5 +1,5 @@
-{...}: {
-  flake.modules.homeManager.waylandBase = {pkgs, ...}: {
+{ ... }: {
+  flake.modules.homeManager.waylandBase = { pkgs, ... }: {
     services.kanshi = {
       enable = true;
 
@@ -40,6 +40,25 @@
               criteria = "Dell Inc. AW2725DF JRS7ZZ3";
               mode = "2560x1440@144.00";
               position = "1707,0";
+            }
+          ];
+        }
+
+        {
+          profile.name = "desktop-dual-monitor";
+          profile.outputs = [
+            # Alienware 1440p
+            {
+              criteria = "Dell Inc. AW2725DF JRS7ZZ3";
+              mode = "2560x1440@359.979";
+              position = "0,0";
+            }
+
+            # Shitty 1080p AoC monitor
+            {
+              criteria = "PNP(AOC) 24G2W1G4 ATNL61A180277";
+              mode = "1920x1080@144.000";
+              position = "2560,0";
             }
           ];
         }

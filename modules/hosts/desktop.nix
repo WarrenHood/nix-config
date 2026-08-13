@@ -32,7 +32,55 @@
             niriConfig
             noctaliaShell
 
-            ({ pkgs, ... }: {
+            ({ pkgs, lib, ... }: {
+              # # Force disable kanshi since it cannot enable VRR sadly...
+              services.kanshi.enable = lib.mkForce false;
+
+              # Enable VRR on the alienware monitor on niri
+              programs.niri.settings =
+                {
+                  outputs = {
+                    # Alienware monitor
+                    "Dell Inc. AW2725DF JRS7ZZ3" = {
+                      variable-refresh-rate = "on-demand";
+                      mode = {
+                        width = 2560;
+                        height = 1440;
+                        refresh = 359.979;
+                      };
+                      position = { x = 0; y = 0; };
+                    };
+
+                    # Shitty 1080p AoC monitor
+                    "PNP(AOC) 24G2W1G4 ATNL61A180277" = {
+                      mode =
+                        {
+                          width = 1920;
+                          height = 1080;
+                          refresh = 144.000;
+                        };
+                      position = { x = 2560; y = 0; };
+                    };
+                  };
+
+                  window-rules = [
+                    {
+                      matches = [
+                        {
+                          app-id = "^steam_app_";
+                        }
+                        {
+                          app-id = "\\.exe$";
+                        }
+                        {
+                          app-id = "^osu!$";
+                        }
+                      ];
+                      variable-refresh-rate = true;
+                    }
+                  ];
+                };
+
               home.packages = with pkgs; [
                 osu-lazer-bin
                 prismlauncher
