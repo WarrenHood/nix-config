@@ -9,7 +9,7 @@
       minimalGraphicalBase
 
       # DE/Compositor
-      # niri
+      niri
       # hyprland
 
       # I game on here with nvidia graphics
@@ -29,8 +29,8 @@
             warren
             codingBase
             gamingBase
-            # niriConfig
-            # noctaliaShell
+            niriConfig
+            noctaliaShell
 
             ({ pkgs, ... }: {
               home.packages = with pkgs; [
@@ -65,10 +65,10 @@
             in
             lib.mkForce nixpkgs-unfree.linuxKernel.packages.linux_xanmod_latest;
 
-          # Use KDE Plasma 6
-          services.desktopManager.plasma6.enable = true;
-          # Blueman is really not needed with KDE Plasma
-          services.blueman.enable = lib.mkForce false;
+          # # Use KDE Plasma 6
+          # services.desktopManager.plasma6.enable = true;
+          # # Blueman is really not needed with KDE Plasma
+          # services.blueman.enable = lib.mkForce false;
 
           # Temurin JRE
           environment.systemPackages = with pkgs; [
