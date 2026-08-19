@@ -32,6 +32,9 @@
             niriConfig
             noctaliaShell
 
+            # My server monitoring service
+            srvwatch
+
             ({ pkgs, lib, ... }: {
               # # Force disable kanshi since it cannot enable VRR sadly...
               services.kanshi.enable = lib.mkForce false;

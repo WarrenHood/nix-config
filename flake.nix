@@ -31,6 +31,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # My server monitoring service
+    srvwatch = {
+      url = "github:WarrenHood/srvwatch";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Anime games
     aagl = {
       url = "github:ezKEa/aagl-gtk-on-nix"; # Unstable
