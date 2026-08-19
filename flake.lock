@@ -883,11 +883,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1787174032,
-        "narHash": "sha256-SVT+gzvWqATqFF9oVXmKn1PyrwHGjjclxyQQle8t+Qg=",
+        "lastModified": 1787177908,
+        "narHash": "sha256-yAkg4y3gPbe3yhkVZAkruaRnczxKJT3g2v/A9BC27no=",
         "owner": "WarrenHood",
         "repo": "srvwatch",
-        "rev": "8d9258dc7b855dfcdf2d0d1a938c1cc3e38bd266",
+        "rev": "edc9537382ded8420fd8b07b93d5c58a3ea61945",
         "type": "github"
       },
       "original": {
