@@ -1,12 +1,12 @@
-{...}: {
-  flake.modules.nixos.waylandBase = {...}: {
+{ ... }: {
+  flake.modules.nixos.waylandBase = { ... }: {
     environment.variables = {
       # Ask chromium based apps to run natively on Wayland
       NIXOS_OZONE_WL = "1";
     };
   };
 
-  flake.modules.homeManager.waylandBase = {pkgs, ...}: {
+  flake.modules.homeManager.waylandBase = { pkgs, ... }: {
     programs.fuzzel = {
       enable = true;
       settings = {
@@ -61,6 +61,7 @@
       package = pkgs.kdePackages.breeze;
       name = "breeze_cursors";
       size = 24;
+      enable = true;
       gtk.enable = true;
       x11.enable = true;
     };
