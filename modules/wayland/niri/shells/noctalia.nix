@@ -7,81 +7,64 @@
 
     programs.niri.settings = {
       spawn-at-startup = [
-        { argv = [ "noctalia-shell" ]; }
+        { argv = [ "noctalia" ]; }
       ];
     };
 
     # Enable noctalia shell
-    programs.noctalia-shell = {
+    programs.noctalia = {
       enable = true;
 
-      # Reference config at: https://docs.noctalia.dev/noctalia-shell/getting-started/nixos/?section=config-ref#config-ref
       settings = {
         bar = {
-          barType = "simple";
-          position = "top";
-          monitors = [ ];
-          density = "compact";
-          widgets = {
-            left = [
-              {
-                id = "Launcher";
-              }
-              {
-                id = "SystemMonitor";
-              }
-              {
-                id = "ActiveWindow";
-              }
-              {
-                id = "MediaMini";
-              }
+          order = [ "default" ];
+
+          default = {
+            position = "top";
+
+            start = [
+              "launcher"
+              "sysmon"
+              "active_window"
+              "media"
             ];
             center = [
-              {
-                id = "Workspace";
-              }
+              "workspaces"
             ];
-            right = [
-              {
-                id = "Tray";
-              }
-              {
-                id = "NotificationHistory";
-              }
-              {
-                id = "Battery";
-              }
-              {
-                id = "Volume";
-              }
-              {
-                id = "Brightness";
-              }
-              {
-                id = "Clock";
-              }
-              {
-                id = "ControlCenter";
-              }
+            end = [
+              "tray"
+              "notifications"
+              "clipboard"
+              "battery"
+              "network"
+              "bluetooth"
+              "volume"
+              "brightness"
+              "clock"
+              "control-center"
+              "session"
             ];
           };
         };
-        colorSchemes = {
-          useWallpaperColors = true;
-          predefinedScheme = "Gruvbox";
-          darkMode = true;
-          schedulingMode = "off";
-          manualSunrise = "06:30";
-          manualSunset = "18:30";
-          generationMethod = "tonal-spot";
-          monitorForColors = "";
-          syncGsettings = true;
+
+        config = {
+          use_wallpaper_colors = true;
+          predefined_scheme = "Gruvbox";
+          dark_mode = true;
+          scheduling_mode = "off";
+          manual_sunrise = "06:30";
+          manual_sunset = "18:30";
+          generation_method = "tonal-spot";
+          monitor_for_colors = "";
+          sync_gsettings = true;
         };
+
         wallpaper = {
           directory = "${config.home.homeDirectory}/.wallpapers";
         };
       };
     };
+
+
   };
 }
