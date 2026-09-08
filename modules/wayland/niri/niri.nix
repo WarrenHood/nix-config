@@ -10,6 +10,7 @@
       imports = with self.modules.nixos; [
         waylandBase
         inputs.niri.nixosModules.niri
+        xwaylandOverlay # Temporary until https://github.com/Supreeeme/xwayland-satellite/issues/468 merged
       ];
 
       # Use niri-unstable since niri-stable is kinda behind
@@ -262,6 +263,7 @@
     imports = with self.modules.homeManager; [
       inputs.niri.homeModules.niri
       niriConfig
+      xwaylandOverlay # Temporary until https://github.com/Supreeeme/xwayland-satellite/issues/468 merged
     ];
 
     # Enable niri

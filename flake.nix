@@ -7,6 +7,11 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     # nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
+
+    # There is a bug on xwayland-satellite 0.8.2 that makes steam context menus lose focus immediately...
+    # I'll remove this once https://github.com/Supreeeme/xwayland-satellite/issues/468 is merged
+    nixpkgs-xwayland-satellite.url = "github:NixOS/nixpkgs/a5cbcfe954791221bfffe2307f7d1a1bf61a871e";
+
     nixpkgs-unfree = {
       url = "github:numtide/nixpkgs-unfree";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
