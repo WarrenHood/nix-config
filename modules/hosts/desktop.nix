@@ -32,6 +32,9 @@
             niriConfig
             noctaliaShell
 
+            # AI stuff
+            ai
+
             # My server monitoring service
             srvwatch
 
@@ -124,7 +127,7 @@
           # Temurin JRE
           environment.systemPackages = with pkgs; [
             temurin-jre-bin
-            cataclysm-dda
+            # cataclysm-dda
           ];
 
           imports =
