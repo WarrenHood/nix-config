@@ -32,6 +32,8 @@
             niriConfig
             noctaliaShell
 
+            _3d
+
             # AI stuff
             ai
 
