@@ -8,6 +8,9 @@
       # This is a graphical system
       minimalGraphicalBase
 
+      # AI Stuff
+      ai
+
       # DE/Compositor
       niri
       # hyprland
