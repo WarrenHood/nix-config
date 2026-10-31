@@ -1,20 +1,17 @@
-{
-  inputs,
-  self,
-  ...
+{ inputs
+, self
+, ...
 }: {
   flake.nixosConfigurations.g14 = inputs.nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     modules = with self.modules.nixos; [
-      # This is a graphical system
-      minimalGraphicalBase
+      # This system does not need graphics
+      minimalBaremetalBase
 
       # DE/Compositor
       # niri
       # hyprland
 
-      # I game on here with nvidia graphics
-      self.modules.nixos.gamingBase
       self.modules.nixos.nvidiaBase
 
       # Home manager NixOS module
@@ -28,27 +25,35 @@
         home-manager.users.warren = {
           imports = with self.modules.homeManager; [
             warren
-            codingBase
-            gamingBase
-            # niriConfig
-            # noctaliaShell
+            minimalBase
           ];
         };
       }
 
       # Host specific config
-      ({
-        config,
-        lib,
-        pkgs,
-        modulesPath,
-        ...
-      }: {
+      ({ config
+       , lib
+       , pkgs
+       , modulesPath
+       , ...
+       }: {
         networking.hostName = "rog-g14";
 
-        services.desktopManager.plasma6.enable = true;
+        # Allow SSG into this host
+        services.openssh = {
+          enable = true;
+          settings.PasswordAuthentication = false;
+        };
 
-        imports = [(modulesPath + "/installer/scan/not-detected.nix")];
+        # Laptop server host shouldn't sleep
+        systemd.sleep.settings.Sleep = {
+          AllowSuspend = false;
+          AllowHibernation = false;
+          AllowHybridSleep = false;
+          AllowSuspendThenHibernate = false;
+        };
+
+        imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
         hardware.nvidia = {
           # Nvidia prime
@@ -69,24 +74,24 @@
           "sd_mod"
           "rtsx_pci_sdmmc"
         ];
-        boot.initrd.kernelModules = [];
+        boot.initrd.kernelModules = [ ];
 
         # Use the xanmod kernel
         # boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
 
         # Use the latest linux kernel
         # boot.kernelPackages = pkgs.linuxPackages_latest;
-        
+
         boot.kernelPackages = pkgs.linuxPackages_zen;
 
-        
+
         # boot.kernelPackages = let
         #   nixpkgs-unfree = inputs.nixpkgs-unfree.legacyPackages.${pkgs.stdenv.hostPlatform.system};
         # in
         #   lib.mkForce nixpkgs-unfree.linuxKernel.packages.linux_xanmod_latest;
 
-        boot.kernelModules = ["kvm-amd" "hid_nintendo"];
-        boot.extraModulePackages = with config.boot.kernelPackages; [];
+        boot.kernelModules = [ "kvm-amd" ];
+        boot.extraModulePackages = with config.boot.kernelPackages; [ ];
         boot.kernelParams = [
           # Disable amd pstate to stop stupid boosting my cpu temp through the roof
           # "initcall_blacklist=amd_pstate_init"
@@ -125,7 +130,7 @@
         fileSystems."/boot" = {
           device = "/dev/disk/by-uuid/40F1-396F";
           fsType = "vfat";
-          options = ["fmask=0022" "dmask=0022"];
+          options = [ "fmask=0022" "dmask=0022" ];
         };
 
         # Star citizen requirements
