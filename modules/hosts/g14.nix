@@ -116,6 +116,10 @@
           KWIN_X11_FORCE_SOFTWARE_VSYNC = 1;
         };
 
+        environment.systemPackages = with pkgs; [
+          temurin-jre-bin
+        ];
+
         fileSystems."/" = {
           device = "/dev/disk/by-uuid/dfe5cdc6-62b7-4ef0-aa0c-e38f4b4c6b24";
           fsType = "ext4";
@@ -156,6 +160,10 @@
         # still possible to use this option, but it's recommended to use it in conjunction
         # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
         networking.useDHCP = lib.mkDefault true;
+
+        networking.firewall.allowedTCPPorts = [ 25565 ];
+        networking.firewall.allowedUDPPorts = [ 9876 9877 ];
+
         # networking.interfaces.wlp2s0.useDHCP = lib.mkDefault true;
 
         nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
