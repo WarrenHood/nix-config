@@ -30,7 +30,7 @@
     services.upower.enable = true;
 
     # Flatpak
-    services.flatpak.enable = true;
+    # services.flatpak.enable = true;
 
     # Tailscale
     services.tailscale.enable = true;
