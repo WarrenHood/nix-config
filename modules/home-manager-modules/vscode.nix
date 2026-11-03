@@ -13,7 +13,7 @@
         mutableExtensionsDir = false;
         profiles.default.extensions = with inputs.nix-vscode-extensions.extensions.${pkgs.stdenv.hostPlatform.system}.vscode-marketplace; [
           # Git
-          eamodio.gitlens
+          mk12.better-git-line-blame
 
           # Theme
           jdinhlife.gruvbox
@@ -26,7 +26,8 @@
           # Python
           ms-python.python
           ms-pyright.pyright
-          ms-python.black-formatter
+          charliermarsh.ruff
+          ms-python.mypy-type-checker
 
           # Nix
           jnoortheen.nix-ide
