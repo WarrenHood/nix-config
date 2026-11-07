@@ -30,7 +30,6 @@
 
     in
     {
-      nixpkgs.config.allowUnfree = true;
 
       home.packages = [
         llama-cpp-kv-streaming
